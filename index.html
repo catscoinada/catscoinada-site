@@ -1,43 +1,502 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>CATS Swap</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>$CATS | The Crazy Cats on Cardano</title>
+
   <style>
+    * { box-sizing: border-box; }
+
     body {
-      background: black;
-      color: white;
-      text-align: center;
-      font-family: Arial;
-      padding: 50px;
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top, rgba(255, 0, 200, 0.28), transparent 34%),
+        linear-gradient(180deg, #070010 0%, #020003 100%);
+      color: #fff;
     }
-    button {
-      padding: 15px 30px;
+
+    .wrap {
+      max-width: 980px;
+      margin: auto;
+      padding: 24px 14px 60px;
+    }
+
+    .top {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      width: 112px;
+      height: 112px;
+      border-radius: 28px;
+      object-fit: cover;
+      box-shadow: 0 0 42px rgba(255, 0, 200, 0.58);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      margin: 8px 0 4px;
+      font-size: 46px;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: #efd8ff;
       font-size: 18px;
-      margin: 10px;
-      cursor: pointer;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.18);
+      color: #ffd6ff;
+      font-size: 14px;
+    }
+
+    .hero-video {
+      max-width: 720px;
+      margin: 26px auto 18px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.18);
+      box-shadow: 0 0 46px rgba(255, 0, 200, 0.3);
+      background: #000;
+    }
+
+    .hero-video video {
+      width: 100%;
+      display: block;
+    }
+
+    .hero-copy {
+      max-width: 720px;
+      margin: 0 auto 24px;
+      text-align: center;
+      color: #f4ddff;
+      font-size: 18px;
+      line-height: 1.55;
+    }
+
+    .swap-card {
+      max-width: 620px;
+      margin: 28px auto;
+      background: #08080d;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 28px;
+      padding: 18px;
+      box-shadow: 0 0 35px rgba(0,0,0,0.45);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 13px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.07);
+      color: #b7b7c9;
+      font-weight: bold;
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, #2aa7ff, #7cf7ff);
+      color: #051018;
+    }
+
+    .swap-box {
+      background: #101017;
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 22px;
+      padding: 18px;
+      margin-bottom: 12px;
+    }
+
+    .swap-label {
+      color: #9fa0b5;
+      font-weight: bold;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .token-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .token-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .token-img {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .ada-img {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #1d6dff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .token-name {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .token-sub {
+      color: #9fa0b5;
+      font-size: 15px;
+      margin-top: 2px;
+    }
+
+    .amount {
+      text-align: right;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .usd {
+      color: #8e8fa3;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    .arrow {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #171722;
+      margin: -2px auto 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #8df7ff;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .rate {
+      text-align: center;
+      color: #d7ecff;
+      font-weight: bold;
+      margin: 16px 0;
+      font-size: 16px;
+    }
+
+    .main-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #2aa7ff, #7cf7ff);
+      color: #021018;
+      text-decoration: none;
+      font-size: 20px;
+      font-weight: 900;
+      margin-top: 14px;
+    }
+
+    .quick-buttons {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .quick-buttons a {
+      text-align: center;
+      padding: 13px;
+      border-radius: 14px;
+      text-decoration: none;
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .warning {
+      max-width: 720px;
+      margin: 28px auto;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 196, 0, 0.16);
+      border: 1px solid rgba(255, 196, 0, 0.45);
+      color: #ffe28a;
+      font-weight: bold;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .policy-box {
+      max-width: 720px;
+      margin: 24px auto;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.16);
+      text-align: center;
+    }
+
+    .policy {
+      margin-top: 10px;
+      padding: 14px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.35);
+      word-break: break-all;
+      font-family: monospace;
+      font-size: 13px;
+      color: #f3d6ff;
+    }
+
+    h2 {
+      margin-top: 56px;
+      color: #ffb7ff;
+      font-size: 28px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: #efe4f6;
+      text-align: center;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.14);
+      border-radius: 22px;
+      padding: 22px;
+      text-align: center;
+      min-height: 145px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #fff;
+      font-size: 20px;
+    }
+
+    .card p {
+      font-size: 15px;
+      color: #e8d9ef;
+      margin-bottom: 0;
+    }
+
+    .footer {
+      margin-top: 60px;
+      font-size: 13px;
+      color: #cdb8d8;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .logo { width: 100px; height: 100px; }
+      h1 { font-size: 36px; }
+      .token-name { font-size: 28px; }
+      .amount { font-size: 22px; }
+      .quick-buttons { grid-template-columns: 1fr; }
+      .hero-copy { font-size: 16px; }
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
 
-<h1>CATS (The Crazy Cats)</h1>
+    <div class="top">
+      <img src="/logo.png" alt="CATS official logo" class="logo" />
+      <h1>$CATS</h1>
+      <div class="subtitle">The Crazy Luna Cat on Cardano</div>
+      <div class="badge">Official $CATS Portal</div>
+    </div>
 
-<p>The official meme token on Cardano</p>
+    <div class="hero-video">
+      <video autoplay muted loop playsinline controls>
+        <source src="/cats-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
 
-<p>⚠️ Beware of fake tokens</p>
+    <div class="hero-copy">
+      Crazy. Cute. Dangerous.<br>
+      Meet Luna Cat — the face of $CATS on Cardano.
+    </div>
 
-<p>Policy ID:<br>
-bbb0be3f57598bbbf6a7d6ce18a60700beceb6904923a6a555ca03454</p>
+    <div class="swap-card">
+      <div class="tabs">
+        <div class="tab active">Swap</div>
+        <div class="tab">Token Info</div>
+        <div class="tab">Chart</div>
+      </div>
 
-<button onclick="window.open('https://app.minswap.org/swap')">
-Swap on Minswap
-</button>
+      <div class="swap-box">
+        <div class="swap-label">You sell</div>
+        <div class="token-row">
+          <div class="token-left">
+            <div class="ada-img">ADA</div>
+            <div>
+              <div class="token-name">ADA</div>
+              <div class="token-sub">Cardano</div>
+            </div>
+          </div>
+          <div>
+            <div class="amount">0</div>
+            <div class="usd">~$0.00</div>
+          </div>
+        </div>
+      </div>
 
-<br>
+      <div class="arrow">↓</div>
 
-<button onclick="window.open('https://x.com/CATScoinada')">
-Twitter
-</button>
+      <div class="swap-box">
+        <div class="swap-label">You buy</div>
+        <div class="token-row">
+          <div class="token-left">
+            <img src="/logo.png" class="token-img" alt="CATS" />
+            <div>
+              <div class="token-name">CATS</div>
+              <div class="token-sub">The Crazy Cats</div>
+            </div>
+          </div>
+          <div>
+            <div class="amount">0</div>
+            <div class="usd">~$0.00</div>
+          </div>
+        </div>
+      </div>
 
+      <div class="rate">
+        Buy $CATS safely via DexHunter / Minswap
+      </div>
+
+      <a class="main-btn" href="https://app.dexhunter.io/swap" target="_blank">
+        Connect Wallet / Buy $CATS
+      </a>
+
+      <div class="quick-buttons">
+        <a href="https://app.dexhunter.io/swap" target="_blank">DexHunter</a>
+        <a href="https://app.minswap.org/swap" target="_blank">Minswap</a>
+        <a href="https://www.taptools.io/" target="_blank">TapTools</a>
+      </div>
+    </div>
+
+    <div class="warning">
+      ⚠️ MANY FAKE CATS TOKENS EXIST<br>
+      Always verify the official Policy ID before buying.
+    </div>
+
+    <div class="policy-box">
+      <strong>✅ Official Policy ID</strong>
+      <div class="policy">
+        bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
+      </div>
+      <p>Copy and verify this Policy ID before buying $CATS.</p>
+    </div>
+
+    <h2>What is CATS?</h2>
+    <p>
+      CATS is a community-driven meme token on Cardano,
+      powered by crazy cat energy, Luna Cat, memes, storytelling,
+      NFTs, and future community rewards.
+    </p>
+
+    <h2>Why CATS?</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>🐱 Luna Cat IP</h3>
+        <p>A character-driven meme project with a recognizable mascot.</p>
+      </div>
+      <div class="card">
+        <h3>🛡 Official Source</h3>
+        <p>catscoinada.com is the official home of $CATS.</p>
+      </div>
+      <div class="card">
+        <h3>🚀 Early Stage</h3>
+        <p>The project is just beginning. Community comes first.</p>
+      </div>
+    </div>
+
+    <h2>Tokenomics</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Total Supply</h3>
+        <p>88,888,888,888,888,900 CATS</p>
+      </div>
+      <div class="card">
+        <h3>Network</h3>
+        <p>Cardano</p>
+      </div>
+      <div class="card">
+        <h3>Utility</h3>
+        <p>NFT access, community rewards, creator rewards, and ecosystem use.</p>
+      </div>
+    </div>
+
+    <h2>Roadmap</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Phase 1</h3>
+        <p>Website launch, token visibility, Luna Cat content, and community building.</p>
+      </div>
+      <div class="card">
+        <h3>Phase 2</h3>
+        <p>CATS Core 100, airdrops, holder rewards, and GIF meme expansion.</p>
+      </div>
+      <div class="card">
+        <h3>Phase 3</h3>
+        <p>Genesis NFT collection and CATS Universe expansion.</p>
+      </div>
+    </div>
+
+    <h2>Official Links</h2>
+    <div class="quick-buttons">
+      <a href="https://github.com/cardano-foundation/cardano-token-registry/pull/7943" target="_blank">Registry PR #7943</a>
+      <a href="https://x.com/CATScoinada" target="_blank">X / Twitter</a>
+      <a href="https://catscoinada.com/logo.png" target="_blank">Official Logo</a>
+    </div>
+
+    <div class="warning">
+      $CATS is a meme/community token. Crypto assets are risky.
+      This website is not financial advice.
+    </div>
+
+    <div class="footer">
+      © 2026 CATScoinada.com · Official home of $CATS on Cardano
+    </div>
+
+  </div>
 </body>
 </html>
