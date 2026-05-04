@@ -1,38 +1,112 @@
-<div id="lockedContent" class="card locked">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CATS Access</title>
 
-  <h2>Luna Cat: Genesis Viewer #001</h2>
+  <style>
+    body {
+      background: #0d0d0d;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
 
-  <!-- 영상 -->
-  <video id="lunaVideo" width="100%" autoplay muted playsinline>
-    <source src="cats-video.mp4" type="video/mp4">
-  </video>
+    .card {
+      max-width: 500px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 16px;
+      background: #1a1a1a;
+    }
 
-  <!-- 시 (처음엔 숨김) -->
-  <div id="poemBox" class="poem-box" style="display:none;">
+    .poem-box {
+      margin-top: 24px;
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(255, 204, 204, 0.08);
+      border: 1px solid rgba(255, 204, 204, 0.25);
+      line-height: 1.8;
+      font-size: 18px;
+      color: #fff3f6;
+      text-align: center;
+      display: none;
+    }
 
-    <!-- 한글 -->
-    <div class="poem-ko">
-      <p>조용한 우주 속에서</p>
-      <p>작은 고양이가 눈을 떴다</p>
-      <br>
-      <p>아무도 몰랐지만</p>
-      <br>
-      <p>그 순간</p>
-      <p>너와 함께</p>
-      <p>달을 향해 날기 시작했다</p>
-    </div>
+    .poem-ko {
+      margin-bottom: 20px;
+    }
 
-    <!-- 영어 -->
-    <div class="poem-en">
-      <p>In a quiet universe,</p>
-      <p>a small cat opened its eyes.</p>
-      <br>
-      <p>No one noticed.</p>
-      <br>
-      <p>In that moment,</p>
-      <p>it began to fly to the moon—with you.</p>
+    .poem-en {
+      opacity: 0.7;
+      font-size: 16px;
+      font-style: italic;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="card">
+
+    <h2>Luna Cat: Genesis Viewer #001</h2>
+
+    <!-- 영상 -->
+    <video id="lunaVideo" width="100%" autoplay muted playsinline>
+      <source src="cats-video.mp4" type="video/mp4">
+    </video>
+
+    <!-- 시 -->
+    <div id="poemBox" class="poem-box">
+
+      <!-- 한글 -->
+      <div class="poem-ko">
+        <p>조용한 우주 속에서</p>
+        <p>작은 고양이가 눈을 떴다</p>
+
+        <br>
+
+        <p>아무도 몰랐지만</p>
+
+        <br>
+
+        <p>그 순간</p>
+        <p>너와 함께</p>
+        <p>달을 향해 날기 시작했다</p>
+      </div>
+
+      <!-- 영어 -->
+      <div class="poem-en">
+        <p>In a quiet universe,</p>
+        <p>a small cat opened its eyes.</p>
+
+        <br>
+
+        <p>No one noticed.</p>
+
+        <br>
+
+        <p>In that moment,</p>
+        <p>it began to fly to the moon—with you.</p>
+      </div>
+
     </div>
 
   </div>
 
-</div>
+  <!-- JS -->
+  <script>
+    const video = document.getElementById("lunaVideo");
+    const poem = document.getElementById("poemBox");
+
+    if (video && poem) {
+      video.onended = () => {
+        poem.style.display = "block";
+      };
+    }
+  </script>
+
+</body>
+</html>
