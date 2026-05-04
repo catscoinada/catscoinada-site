@@ -2,111 +2,197 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CATS Access</title>
 
   <style>
     body {
-      background: #0d0d0d;
+      margin: 0;
+      background: #050505;
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 28px 14px;
     }
 
     .card {
-      max-width: 500px;
-      margin: auto;
-      padding: 20px;
+      width: 100%;
+      max-width: 520px;
+      padding: 22px;
+      border-radius: 22px;
+      background: #151515;
+      box-shadow: 0 0 30px rgba(255, 180, 200, 0.12);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin: 0 0 18px;
+    }
+
+    .nft-image {
+      width: 100%;
+      border-radius: 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 0 24px rgba(255, 170, 200, 0.22);
+    }
+
+    video {
+      width: 82%;
       border-radius: 16px;
-      background: #1a1a1a;
+      margin: 8px auto 18px;
+      display: block;
     }
 
     .poem-box {
-      margin-top: 24px;
-      padding: 22px;
-      border-radius: 16px;
-      background: rgba(255, 204, 204, 0.08);
-      border: 1px solid rgba(255, 204, 204, 0.25);
-      line-height: 1.8;
-      font-size: 18px;
-      color: #fff3f6;
-      text-align: center;
       display: none;
+      margin-top: 18px;
+      padding: 26px 18px;
+      border-radius: 18px;
+      background: rgba(255, 210, 220, 0.08);
+      border: 1px solid rgba(255, 210, 220, 0.25);
+      min-height: 260px;
+    }
+
+    .poem-ko,
+    .poem-en {
+      display: none;
+      animation: fadeIn 1.2s ease forwards;
     }
 
     .poem-ko {
-      margin-bottom: 20px;
+      font-size: 22px;
+      line-height: 2;
+      color: #fff2f5;
+      font-weight: 500;
     }
 
     .poem-en {
-      opacity: 0.7;
-      font-size: 16px;
+      font-size: 21px;
+      line-height: 2;
+      color: #ffffff;
       font-style: italic;
+      opacity: 0.95;
+    }
+
+    .small-note {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 19px;
+      }
+
+      video {
+        width: 90%;
+      }
+
+      .poem-ko {
+        font-size: 20px;
+      }
+
+      .poem-en {
+        font-size: 20px;
+      }
     }
   </style>
-
 </head>
 
 <body>
+  <div class="page">
+    <div class="card">
 
-  <div class="card">
+      <h1>Luna Cat: Genesis Viewer #001</h1>
 
-    <h2>Luna Cat: Genesis Viewer #001</h2>
+      <!-- NFT 대표 이미지 -->
+      <img
+        class="nft-image"
+        src="luna-genesis-nft.png"
+        alt="Luna Cat Genesis NFT"
+      >
 
-    <!-- 🔥 영상 (파일명 수정됨) -->
-    <video id="lunaVideo" width="100%" autoplay muted playsinline>
-      <source src="luna-genesis.mp4" type="video/mp4">
-    </video>
+      <!-- 영상 -->
+      <video id="lunaVideo" autoplay muted playsinline controls>
+        <source src="luna-genesis.mp4" type="video/mp4">
+      </video>
 
-    <!-- 시 -->
-    <div id="poemBox" class="poem-box">
+      <!-- 시 -->
+      <div id="poemBox" class="poem-box">
 
-      <!-- 한글 -->
-      <div class="poem-ko">
-        <p>조용한 우주 속에서</p>
-        <p>작은 고양이가 눈을 떴다</p>
+        <!-- 한글: 먼저 크게 표시 -->
+        <div id="poemKo" class="poem-ko">
+          <p>조용한 우주 속에서</p>
+          <p>작은 고양이가 눈을 떴다</p>
+          <br>
+          <p>아무도 몰랐지만</p>
+          <br>
+          <p>그 순간</p>
+          <p>너와 함께</p>
+          <p>달을 향해 날기 시작했다</p>
+        </div>
 
-        <br>
+        <!-- 영어: 마지막에 크게 표시 -->
+        <div id="poemEn" class="poem-en">
+          <p>In a quiet universe,</p>
+          <p>a small cat opened its eyes.</p>
+          <br>
+          <p>No one noticed.</p>
+          <br>
+          <p>In that moment,</p>
+          <p>it began to fly to the moon—with you.</p>
+        </div>
 
-        <p>아무도 몰랐지만</p>
-
-        <br>
-
-        <p>그 순간</p>
-        <p>너와 함께</p>
-        <p>달을 향해 날기 시작했다</p>
       </div>
 
-      <!-- 영어 -->
-      <div class="poem-en">
-        <p>In a quiet universe,</p>
-        <p>a small cat opened its eyes.</p>
-
-        <br>
-
-        <p>No one noticed.</p>
-
-        <br>
-
-        <p>In that moment,</p>
-        <p>it began to fly to the moon—with you.</p>
+      <div class="small-note">
+        Hold CATS. Unlock your universe.
       </div>
 
     </div>
-
   </div>
 
-  <!-- JS -->
   <script>
     const video = document.getElementById("lunaVideo");
-    const poem = document.getElementById("poemBox");
+    const poemBox = document.getElementById("poemBox");
+    const poemKo = document.getElementById("poemKo");
+    const poemEn = document.getElementById("poemEn");
 
-    if (video && poem) {
+    if (video && poemBox && poemKo && poemEn) {
       video.onended = () => {
-        poem.style.display = "block";
+        poemBox.style.display = "block";
+
+        poemKo.style.display = "block";
+        poemEn.style.display = "none";
+
+        setTimeout(() => {
+          poemKo.style.display = "none";
+          poemEn.style.display = "block";
+        }, 4500);
       };
     }
   </script>
-
 </body>
 </html>
