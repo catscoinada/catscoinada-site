@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CATS Access</title>
 
   <style>
     body {
       margin: 0;
-      background: radial-gradient(circle at top, #27111f 0%, #050505 46%, #000 100%);
+      background: radial-gradient(circle at top, #27111f 0%, #050505 45%, #000 100%);
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -27,7 +27,7 @@
       max-width: 560px;
       padding: 24px;
       border-radius: 24px;
-      background: rgba(18, 18, 18, 0.94);
+      background: rgba(18, 18, 18, 0.95);
       box-shadow: 0 0 36px rgba(255, 150, 195, 0.18);
       border: 1px solid rgba(255, 200, 220, 0.14);
     }
@@ -35,13 +35,63 @@
     h1 {
       font-size: 28px;
       margin: 0 0 6px;
-      letter-spacing: 0.5px;
     }
 
     .subtitle {
       opacity: 0.68;
       font-size: 14px;
       margin-bottom: 18px;
+    }
+
+    .tier-grid {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 20px;
+    }
+
+    .tier {
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tier.locked { color: #aaa; }
+    .tier.preview { color: #ffd6e8; }
+    .tier.full { color: #d9f7ff; }
+    .tier.premium {
+      color: #ffe8a3;
+      animation: premiumPulse 2.2s infinite;
+    }
+    .tier.genesis {
+      color: #fff;
+      background: linear-gradient(135deg, rgba(255, 222, 120, 0.16), rgba(255, 122, 182, 0.10));
+      animation: genesisGlow 1.8s infinite alternate;
+    }
+
+    .tier.active {
+      border: 2px solid #fff;
+      transform: scale(1.03);
+    }
+
+    @keyframes premiumPulse {
+      0% { box-shadow: 0 0 10px rgba(255, 210, 90, 0.12); }
+      50% { box-shadow: 0 0 26px rgba(255, 210, 90, 0.36); }
+      100% { box-shadow: 0 0 10px rgba(255, 210, 90, 0.12); }
+    }
+
+    @keyframes genesisGlow {
+      from {
+        box-shadow: 0 0 14px rgba(255, 215, 120, 0.22), 0 0 24px rgba(255, 120, 180, 0.12);
+      }
+      to {
+        box-shadow: 0 0 30px rgba(255, 215, 120, 0.58), 0 0 46px rgba(255, 120, 180, 0.24);
+      }
     }
 
     .wallet-panel {
@@ -81,57 +131,6 @@
       line-height: 1.6;
       color: #ddd;
       word-break: break-word;
-    }
-
-    .tier-grid {
-      display: grid;
-      gap: 10px;
-      margin: 18px 0 20px;
-    }
-
-    .tier {
-      padding: 12px 14px;
-      border-radius: 16px;
-      font-size: 14px;
-      font-weight: 800;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(255,255,255,0.04);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .tier.locked { color: #a9a9a9; }
-    .tier.preview { color: #ffd6e8; box-shadow: 0 0 14px rgba(255, 122, 182, 0.08); }
-    .tier.full { color: #d9f7ff; box-shadow: 0 0 14px rgba(80, 210, 255, 0.10); }
-    .tier.premium {
-      color: #ffe8a3;
-      animation: premiumPulse 2.2s infinite;
-    }
-    .tier.genesis {
-      color: #ffffff;
-      background: linear-gradient(135deg, rgba(255, 222, 120, 0.16), rgba(255, 122, 182, 0.10));
-      animation: genesisGlow 1.8s infinite alternate;
-    }
-
-    .tier.active {
-      border: 1px solid rgba(255, 255, 255, 0.62);
-      transform: scale(1.02);
-    }
-
-    @keyframes premiumPulse {
-      0% { box-shadow: 0 0 10px rgba(255, 210, 90, 0.10); }
-      50% { box-shadow: 0 0 24px rgba(255, 210, 90, 0.34); }
-      100% { box-shadow: 0 0 10px rgba(255, 210, 90, 0.10); }
-    }
-
-    @keyframes genesisGlow {
-      from {
-        box-shadow: 0 0 14px rgba(255, 215, 120, 0.22), 0 0 24px rgba(255, 120, 180, 0.12);
-      }
-      to {
-        box-shadow: 0 0 28px rgba(255, 215, 120, 0.55), 0 0 44px rgba(255, 120, 180, 0.22);
-      }
     }
 
     .locked-box {
@@ -210,7 +209,6 @@
 </head>
 
 <body>
-
 <div class="page">
   <div class="card">
 
@@ -243,15 +241,17 @@
         <button class="wallet-btn" onclick="connectWallet('lace')">Lace</button>
       </div>
       <div id="walletStatus" class="status">
-        Wallet not connected.
+        Connect your wallet to unlock your tier.
       </div>
     </div>
 
     <div id="lockedBox" class="locked-box">
       <h3>🔒 CATS Access Required</h3>
-      <p>Hold CATS to unlock this experience.</p>
+      <p>Hold at least 8 ADA-equivalent in CATS to unlock this experience.</p>
       <p style="opacity:0.68; font-size:13px;">
-        Current MVP uses fixed CATS thresholds for 8 / 38 / 88 / 888 ADA-equivalent tiers.
+        Only the real CATS unlocks CATS Access.<br>
+        Policy ID:<br>
+        bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
       </p>
     </div>
 
@@ -305,22 +305,20 @@
   const CATS_ASSET_NAME_HEX = "43415453";
 
   /*
-    임시 기준값입니다.
-    실제 "8 / 38 / 88 / 888 ADA 상당"을 반영하려면
-    현재 CATS/ADA 가격 기반으로 아래 값을 업데이트해야 합니다.
+    임시 MVP 기준값입니다.
+    실제 8 / 38 / 88 / 888 ADA 상당 CATS 수량은
+    나중에 가격 API 연동 후 조정하세요.
 
-    예시:
-    8 ADA  = 80,000,000 CATS
-    38 ADA = 380,000,000 CATS
-    88 ADA = 880,000,000 CATS
+    예시 기준:
+    8 ADA   = 80,000,000 CATS
+    38 ADA  = 380,000,000 CATS
+    88 ADA  = 880,000,000 CATS
     888 ADA = 8,880,000,000 CATS
   */
   const REQUIRED_PREVIEW = 80000000;
   const REQUIRED_FULL = 380000000;
   const REQUIRED_PREMIUM = 880000000;
   const REQUIRED_GENESIS = 8880000000;
-
-  let connectedWallet = null;
 
   const walletStatus = document.getElementById("walletStatus");
   const lockedBox = document.getElementById("lockedBox");
@@ -349,6 +347,17 @@
     return "LOCKED";
   }
 
+  function resetExperience() {
+    experience.style.display = "none";
+    lockedBox.style.display = "block";
+
+    nftImage.style.display = "block";
+    video.style.display = "block";
+    poemBox.style.display = "none";
+    poemKo.style.display = "none";
+    poemEn.style.display = "none";
+  }
+
   function unlockExperience(tier, catsAmount) {
     lockedBox.style.display = "none";
     experience.style.display = "block";
@@ -370,14 +379,14 @@
 
     video.currentTime = 0;
     video.play().catch(() => {
-      walletStatus.innerHTML += "<br>▶ Tap play if autoplay is blocked by your browser.";
+      walletStatus.innerHTML += "<br>▶ Tap play if autoplay is blocked.";
     });
   }
 
   function lockExperience(catsAmount = 0) {
-    lockedBox.style.display = "block";
-    experience.style.display = "none";
+    resetExperience();
     setActiveTier("tierLocked");
+
     walletStatus.innerHTML =
       `❌ Not enough CATS detected.<br>` +
       `Current: <strong>${catsAmount.toLocaleString()} CATS</strong><br>` +
@@ -402,12 +411,13 @@
 
   window.connectWallet = async function(walletName) {
     try {
-      connectedWallet = await MeshCardanoBrowserWallet.enable(walletName);
-      const address = await connectedWallet.getChangeAddressBech32();
+      const wallet = await MeshCardanoBrowserWallet.enable(walletName);
+      const address = await wallet.getChangeAddressBech32();
 
-      walletStatus.innerHTML = `✅ Wallet connected:<br>${address}<br>Checking CATS balance...`;
+      walletStatus.innerHTML =
+        `✅ Wallet connected:<br>${address}<br>Checking CATS balance...`;
 
-      const catsAmount = await readCatsBalance(connectedWallet);
+      const catsAmount = await readCatsBalance(wallet);
       const tier = getTier(catsAmount);
 
       if (tier === "LOCKED") {
@@ -440,7 +450,8 @@
     };
   }
 
-  lockExperience(0);
+  resetExperience();
+  setActiveTier("tierLocked");
 </script>
 
 </body>
