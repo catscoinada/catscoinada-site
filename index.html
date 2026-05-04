@@ -19,21 +19,13 @@ body {
   background: radial-gradient(circle at top, #3b0036 0%, #090009 58%, #000 100%);
 }
 
-.hero-video {
-  width: 300px;
-  height: 300px;
-  border-radius: 36px;
-  object-fit: cover;
-  box-shadow: 0 0 48px rgba(255, 120, 200, 0.55);
-  margin-bottom: 22px;
-}
-
 .logo {
-  width: 92px;
+  width: 110px;
   height: auto;
-  margin: 0 auto 18px;
-  border-radius: 20px;
+  margin: 0 auto 22px;
+  border-radius: 22px;
   display: block;
+  box-shadow: 0 0 24px rgba(255, 120, 200, 0.25);
 }
 
 h1 {
@@ -46,8 +38,19 @@ h1 {
   font-size: 20px;
   line-height: 1.45;
   opacity: 0.92;
-  margin: 0 auto;
+  margin: 0 auto 28px;
   max-width: 680px;
+}
+
+.hero-video {
+  width: min(92vw, 520px);
+  height: auto;
+  max-height: 520px;
+  border-radius: 34px;
+  object-fit: cover;
+  box-shadow: 0 0 52px rgba(255, 120, 200, 0.55);
+  margin: 12px auto 0;
+  display: block;
 }
 
 .section {
@@ -237,13 +240,8 @@ footer {
     padding-top: 30px;
   }
 
-  .hero-video {
-    width: 285px;
-    height: 285px;
-  }
-
   .logo {
-    width: 86px;
+    width: 92px;
   }
 
   h1 {
@@ -252,6 +250,12 @@ footer {
 
   .tagline {
     font-size: 18px;
+    margin-bottom: 24px;
+  }
+
+  .hero-video {
+    width: 94vw;
+    border-radius: 30px;
   }
 
   .swap-box {
@@ -283,8 +287,6 @@ footer {
 
 <div class="hero">
 
-  <video class="hero-video" src="cats-video.mp4" autoplay muted loop playsinline></video>
-
   <img src="logo.png" alt="CATS Logo" class="logo" />
 
   <h1>CATS</h1>
@@ -293,6 +295,8 @@ footer {
     Crazy. Cute. Dangerous.<br>
     Meet Luna Cat — the face of $CATS on Cardano.
   </div>
+
+  <video class="hero-video" src="cats-video.mp4" autoplay muted loop playsinline></video>
 
 </div>
 
