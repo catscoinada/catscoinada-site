@@ -8,7 +8,7 @@
   <style>
     body {
       margin: 0;
-      background: #050505;
+      background: radial-gradient(circle at top, #27111f 0%, #050505 46%, #000 100%);
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -24,22 +24,126 @@
 
     .card {
       width: 100%;
-      max-width: 520px;
+      max-width: 560px;
       padding: 24px;
-      border-radius: 22px;
-      background: #151515;
-      box-shadow: 0 0 30px rgba(255, 180, 200, 0.15);
+      border-radius: 24px;
+      background: rgba(18, 18, 18, 0.94);
+      box-shadow: 0 0 36px rgba(255, 150, 195, 0.18);
+      border: 1px solid rgba(255, 200, 220, 0.14);
     }
 
     h1 {
-      font-size: 22px;
-      margin-bottom: 6px;
+      font-size: 28px;
+      margin: 0 0 6px;
+      letter-spacing: 0.5px;
     }
 
     .subtitle {
-      opacity: 0.6;
+      opacity: 0.68;
       font-size: 14px;
       margin-bottom: 18px;
+    }
+
+    .wallet-panel {
+      margin: 18px 0;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .wallet-buttons {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .wallet-btn {
+      border: none;
+      padding: 12px 16px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 800;
+      background: linear-gradient(135deg, #ff7ab6, #ffd1dc);
+      color: #111;
+      box-shadow: 0 0 18px rgba(255, 122, 182, 0.28);
+    }
+
+    .wallet-btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .status {
+      margin-top: 14px;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #ddd;
+      word-break: break-word;
+    }
+
+    .tier-grid {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0 20px;
+    }
+
+    .tier {
+      padding: 12px 14px;
+      border-radius: 16px;
+      font-size: 14px;
+      font-weight: 800;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .tier.locked { color: #a9a9a9; }
+    .tier.preview { color: #ffd6e8; box-shadow: 0 0 14px rgba(255, 122, 182, 0.08); }
+    .tier.full { color: #d9f7ff; box-shadow: 0 0 14px rgba(80, 210, 255, 0.10); }
+    .tier.premium {
+      color: #ffe8a3;
+      animation: premiumPulse 2.2s infinite;
+    }
+    .tier.genesis {
+      color: #ffffff;
+      background: linear-gradient(135deg, rgba(255, 222, 120, 0.16), rgba(255, 122, 182, 0.10));
+      animation: genesisGlow 1.8s infinite alternate;
+    }
+
+    .tier.active {
+      border: 1px solid rgba(255, 255, 255, 0.62);
+      transform: scale(1.02);
+    }
+
+    @keyframes premiumPulse {
+      0% { box-shadow: 0 0 10px rgba(255, 210, 90, 0.10); }
+      50% { box-shadow: 0 0 24px rgba(255, 210, 90, 0.34); }
+      100% { box-shadow: 0 0 10px rgba(255, 210, 90, 0.10); }
+    }
+
+    @keyframes genesisGlow {
+      from {
+        box-shadow: 0 0 14px rgba(255, 215, 120, 0.22), 0 0 24px rgba(255, 120, 180, 0.12);
+      }
+      to {
+        box-shadow: 0 0 28px rgba(255, 215, 120, 0.55), 0 0 44px rgba(255, 120, 180, 0.22);
+      }
+    }
+
+    .locked-box {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    .experience {
+      display: none;
     }
 
     .nft-image {
@@ -50,7 +154,7 @@
     }
 
     video {
-      width: 80%;
+      width: 82%;
       border-radius: 16px;
       margin: 0 auto 20px;
       display: block;
@@ -85,14 +189,8 @@
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .footer {
@@ -102,18 +200,11 @@
     }
 
     @media (max-width: 480px) {
-      .card {
-        padding: 18px;
-      }
-
-      video {
-        width: 90%;
-      }
-
-      .poem-ko,
-      .poem-en {
-        font-size: 20px;
-      }
+      .card { padding: 18px; }
+      h1 { font-size: 24px; }
+      video { width: 92%; }
+      .poem-ko, .poem-en { font-size: 20px; }
+      .tier { font-size: 13px; }
     }
   </style>
 </head>
@@ -126,48 +217,80 @@
     <h1>CATS Access</h1>
     <div class="subtitle">Luna Cat: Genesis Viewer #001</div>
 
-    <!-- NFT 이미지 -->
-    <img
-      id="nftImage"
-      class="nft-image"
-      src="luna-genesis-nft.png"
-      alt="Luna Cat NFT"
-    >
-
-    <!-- 영상 -->
-    <video id="lunaVideo" autoplay muted playsinline controls>
-      <source src="luna-genesis.mp4" type="video/mp4">
-    </video>
-
-    <!-- 시 -->
-    <div id="poemBox" class="poem-box">
-
-      <!-- 한글 -->
-      <div id="poemKo" class="poem-ko">
-        <p>조용한 우주 속에서</p>
-        <p>작은 고양이가 눈을 떴다</p>
-        <br>
-        <p>아무도 몰랐지만</p>
-        <br>
-        <p>그 순간</p>
-        <p>너와 함께</p>
-        <p>달을 향해 날기 시작했다</p>
+    <div class="tier-grid">
+      <div id="tierLocked" class="tier locked">
+        <span>🔒 Locked</span><span>&lt; 8 ADA</span>
       </div>
-
-      <!-- 영어 -->
-      <div id="poemEn" class="poem-en">
-        <p>In a quiet universe,</p>
-        <p>a small cat opened its eyes.</p>
-        <br>
-        <p>No one noticed.</p>
-        <br>
-        <p>In that moment,</p>
-        <p>it began to fly to the moon—with you.</p>
+      <div id="tierPreview" class="tier preview">
+        <span>🌙 Preview Access</span><span>8 ADA</span>
       </div>
-
+      <div id="tierFull" class="tier full">
+        <span>✨ Full Access</span><span>38 ADA</span>
+      </div>
+      <div id="tierPremium" class="tier premium">
+        <span>🔥 Premium Access</span><span>88 ADA</span>
+      </div>
+      <div id="tierGenesis" class="tier genesis">
+        <span>👑 Genesis / Master</span><span>888 ADA</span>
+      </div>
     </div>
 
-    <!-- 🔥 핵심 문구 -->
+    <div class="wallet-panel">
+      <strong>Connect Wallet</strong>
+      <div class="wallet-buttons">
+        <button class="wallet-btn" onclick="connectWallet('eternl')">Eternl</button>
+        <button class="wallet-btn" onclick="connectWallet('nami')">Nami</button>
+        <button class="wallet-btn" onclick="connectWallet('lace')">Lace</button>
+      </div>
+      <div id="walletStatus" class="status">
+        Wallet not connected.
+      </div>
+    </div>
+
+    <div id="lockedBox" class="locked-box">
+      <h3>🔒 CATS Access Required</h3>
+      <p>Hold CATS to unlock this experience.</p>
+      <p style="opacity:0.68; font-size:13px;">
+        Current MVP uses fixed CATS thresholds for 8 / 38 / 88 / 888 ADA-equivalent tiers.
+      </p>
+    </div>
+
+    <div id="experience" class="experience">
+      <img
+        id="nftImage"
+        class="nft-image"
+        src="luna-genesis-nft.png"
+        alt="Luna Cat NFT"
+      >
+
+      <video id="lunaVideo" muted playsinline controls>
+        <source src="luna-genesis.mp4" type="video/mp4">
+      </video>
+
+      <div id="poemBox" class="poem-box">
+        <div id="poemKo" class="poem-ko">
+          <p>조용한 우주 속에서</p>
+          <p>작은 고양이가 눈을 떴다</p>
+          <br>
+          <p>아무도 몰랐지만</p>
+          <br>
+          <p>그 순간</p>
+          <p>너와 함께</p>
+          <p>달을 향해 날기 시작했다</p>
+        </div>
+
+        <div id="poemEn" class="poem-en">
+          <p>In a quiet universe,</p>
+          <p>a small cat opened its eyes.</p>
+          <br>
+          <p>No one noticed.</p>
+          <br>
+          <p>In that moment,</p>
+          <p>it began to fly to the moon—with you.</p>
+        </div>
+      </div>
+    </div>
+
     <div class="footer">
       Hold CATS. Unlock CATS Access.
     </div>
@@ -175,34 +298,149 @@
   </div>
 </div>
 
-<script>
+<script type="module">
+  import { MeshCardanoBrowserWallet } from "https://esm.sh/@meshsdk/wallet";
+
+  const CATS_POLICY_ID = "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
+  const CATS_ASSET_NAME_HEX = "43415453";
+
+  /*
+    임시 기준값입니다.
+    실제 "8 / 38 / 88 / 888 ADA 상당"을 반영하려면
+    현재 CATS/ADA 가격 기반으로 아래 값을 업데이트해야 합니다.
+
+    예시:
+    8 ADA  = 80,000,000 CATS
+    38 ADA = 380,000,000 CATS
+    88 ADA = 880,000,000 CATS
+    888 ADA = 8,880,000,000 CATS
+  */
+  const REQUIRED_PREVIEW = 80000000;
+  const REQUIRED_FULL = 380000000;
+  const REQUIRED_PREMIUM = 880000000;
+  const REQUIRED_GENESIS = 8880000000;
+
+  let connectedWallet = null;
+
+  const walletStatus = document.getElementById("walletStatus");
+  const lockedBox = document.getElementById("lockedBox");
+  const experience = document.getElementById("experience");
+
   const video = document.getElementById("lunaVideo");
   const nftImage = document.getElementById("nftImage");
   const poemBox = document.getElementById("poemBox");
   const poemKo = document.getElementById("poemKo");
   const poemEn = document.getElementById("poemEn");
 
+  const tierIds = ["tierLocked", "tierPreview", "tierFull", "tierPremium", "tierGenesis"];
+
+  function setActiveTier(id) {
+    tierIds.forEach(tid => {
+      document.getElementById(tid).classList.remove("active");
+    });
+    document.getElementById(id).classList.add("active");
+  }
+
+  function getTier(catsAmount) {
+    if (catsAmount >= REQUIRED_GENESIS) return "GENESIS";
+    if (catsAmount >= REQUIRED_PREMIUM) return "PREMIUM";
+    if (catsAmount >= REQUIRED_FULL) return "FULL";
+    if (catsAmount >= REQUIRED_PREVIEW) return "PREVIEW";
+    return "LOCKED";
+  }
+
+  function unlockExperience(tier, catsAmount) {
+    lockedBox.style.display = "none";
+    experience.style.display = "block";
+
+    nftImage.style.display = "block";
+    video.style.display = "block";
+    poemBox.style.display = "none";
+    poemKo.style.display = "none";
+    poemEn.style.display = "none";
+
+    walletStatus.innerHTML =
+      `✅ CATS detected: <strong>${catsAmount.toLocaleString()} CATS</strong><br>` +
+      `Access Tier: <strong>${tier}</strong>`;
+
+    if (tier === "PREVIEW") setActiveTier("tierPreview");
+    if (tier === "FULL") setActiveTier("tierFull");
+    if (tier === "PREMIUM") setActiveTier("tierPremium");
+    if (tier === "GENESIS") setActiveTier("tierGenesis");
+
+    video.currentTime = 0;
+    video.play().catch(() => {
+      walletStatus.innerHTML += "<br>▶ Tap play if autoplay is blocked by your browser.";
+    });
+  }
+
+  function lockExperience(catsAmount = 0) {
+    lockedBox.style.display = "block";
+    experience.style.display = "none";
+    setActiveTier("tierLocked");
+    walletStatus.innerHTML =
+      `❌ Not enough CATS detected.<br>` +
+      `Current: <strong>${catsAmount.toLocaleString()} CATS</strong><br>` +
+      `Required: <strong>${REQUIRED_PREVIEW.toLocaleString()} CATS</strong> for Preview Access.`;
+  }
+
+  async function readCatsBalance(wallet) {
+    const assets = await wallet.getBalanceMesh();
+    let catsAmount = 0;
+
+    assets.forEach(asset => {
+      const unit = asset.unit || "";
+      const quantity = Number(asset.quantity || 0);
+
+      if (unit === CATS_POLICY_ID + CATS_ASSET_NAME_HEX) {
+        catsAmount += quantity;
+      }
+    });
+
+    return catsAmount;
+  }
+
+  window.connectWallet = async function(walletName) {
+    try {
+      connectedWallet = await MeshCardanoBrowserWallet.enable(walletName);
+      const address = await connectedWallet.getChangeAddressBech32();
+
+      walletStatus.innerHTML = `✅ Wallet connected:<br>${address}<br>Checking CATS balance...`;
+
+      const catsAmount = await readCatsBalance(connectedWallet);
+      const tier = getTier(catsAmount);
+
+      if (tier === "LOCKED") {
+        lockExperience(catsAmount);
+      } else {
+        unlockExperience(tier, catsAmount);
+      }
+
+    } catch (error) {
+      console.error(error);
+      walletStatus.innerHTML =
+        "❌ Wallet connection failed.<br>Please install/unlock your wallet and try again.";
+      lockExperience(0);
+    }
+  };
+
   if (video && nftImage && poemBox && poemKo && poemEn) {
-
     video.onended = () => {
-
-      // 이미지 + 영상 제거
       nftImage.style.display = "none";
       video.style.display = "none";
 
-      // 한글 시 등장
       poemBox.style.display = "block";
       poemKo.style.display = "block";
       poemEn.style.display = "none";
 
-      // 4.5초 후 영어 전환
       setTimeout(() => {
         poemKo.style.display = "none";
         poemEn.style.display = "block";
       }, 4500);
     };
-
   }
+
+  lockExperience(0);
 </script>
 
 </body>
