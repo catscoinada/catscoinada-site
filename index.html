@@ -422,7 +422,7 @@
       <strong>✅ Official Policy ID</strong>
       <div class="policy">
         bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
-      </div>
+      </div>  <button onclick="copyPolicy()">Copy Policy ID</button>
       <p>Copy and verify this Policy ID before buying $CATS.</p>
     </div>
 
@@ -498,5 +498,14 @@
     </div>
 
   </div>
+
+<script>
+function copyPolicy() {
+  const text = "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
+  navigator.clipboard.writeText(text);
+  alert("Policy ID copied!");
+}
+</script>
+
 </body>
 </html>
