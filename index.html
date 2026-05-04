@@ -15,29 +15,30 @@ body {
 }
 
 .hero {
-  padding: 36px 20px 48px;
+  padding: 34px 20px 42px;
   background: radial-gradient(circle at top, #3b0036 0%, #090009 58%, #000 100%);
 }
 
-.logo {
-  width: 110px;
-  height: auto;
-  margin-bottom: 20px;
-  border-radius: 22px;
+.hero-video {
+  width: 300px;
+  height: 300px;
+  border-radius: 36px;
+  object-fit: cover;
+  box-shadow: 0 0 48px rgba(255, 120, 200, 0.55);
+  margin-bottom: 22px;
 }
 
-.hero-video {
-  width: 250px;
-  height: 250px;
-  border-radius: 34px;
-  object-fit: cover;
-  box-shadow: 0 0 44px rgba(255, 120, 200, 0.5);
-  margin-bottom: 24px;
+.logo {
+  width: 92px;
+  height: auto;
+  margin: 0 auto 18px;
+  border-radius: 20px;
+  display: block;
 }
 
 h1 {
   font-size: 52px;
-  margin: 14px 0 12px;
+  margin: 10px 0 12px;
   letter-spacing: 1px;
 }
 
@@ -45,25 +46,108 @@ h1 {
   font-size: 20px;
   line-height: 1.45;
   opacity: 0.92;
-  margin: 0 auto 26px;
+  margin: 0 auto;
   max-width: 680px;
+}
+
+.section {
+  padding: 38px 20px;
+}
+
+.swap-box {
+  max-width: 520px;
+  margin: auto;
+  padding: 22px;
+  border-radius: 28px;
+  background: #07070c;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.tab {
+  padding: 11px 18px;
+  border-radius: 16px;
+  background: #1a1a20;
+  color: #aaa;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.tab.active {
+  background: linear-gradient(135deg, #55d5ff, #8ff8ff);
+  color: #111;
+}
+
+.swap-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  border-radius: 18px;
+  background: #111119;
+  border: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 14px;
+}
+
+.swap-left {
+  text-align: left;
+}
+
+.swap-label {
+  color: #aaa;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.coin-title {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.coin-sub {
+  color: #aaa;
+  font-size: 15px;
+}
+
+.amount {
+  font-size: 27px;
+  font-weight: 900;
+}
+
+.swap-arrow {
+  font-size: 28px;
+  margin: 8px 0 16px;
+  color: #8ff8ff;
+}
+
+.buy-text {
+  font-weight: 800;
+  font-size: 17px;
+  line-height: 1.35;
+  margin: 20px 0 16px;
 }
 
 .actions {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 18px;
 }
 
 .btn {
   display: inline-block;
-  width: min(82%, 420px);
-  padding: 16px 24px;
-  border-radius: 18px;
+  width: min(82%, 380px);
+  padding: 14px 22px;
+  border-radius: 17px;
   font-weight: 900;
-  font-size: 18px;
+  font-size: 17px;
   text-decoration: none;
   transition: 0.25s ease;
 }
@@ -71,7 +155,7 @@ h1 {
 .btn-buy {
   background: linear-gradient(135deg, #55d5ff, #8ff8ff);
   color: #111;
-  box-shadow: 0 0 26px rgba(85, 213, 255, 0.32);
+  box-shadow: 0 0 24px rgba(85, 213, 255, 0.30);
 }
 
 .btn-access {
@@ -90,83 +174,12 @@ h1 {
   transform: translateY(-2px) scale(1.03);
 }
 
-.section {
-  padding: 44px 20px;
-}
-
-.swap-box {
-  max-width: 600px;
-  margin: auto;
-  padding: 25px;
-  border-radius: 30px;
-  background: #07070c;
-  border: 1px solid rgba(255,255,255,0.1);
-}
-
-.tabs {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 22px;
-}
-
-.tab {
-  padding: 12px 18px;
-  border-radius: 16px;
-  background: #1a1a20;
-  color: #aaa;
-  font-weight: bold;
-}
-
-.tab.active {
-  background: linear-gradient(135deg, #55d5ff, #8ff8ff);
-  color: #111;
-}
-
-.swap-card {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 22px;
-  border-radius: 20px;
-  background: #111119;
-  border: 1px solid rgba(255,255,255,0.12);
-  margin-bottom: 16px;
-}
-
-.swap-left {
-  text-align: left;
-}
-
-.swap-label {
-  color: #aaa;
-  font-size: 16px;
-  margin-bottom: 6px;
-}
-
-.coin-title {
-  font-size: 34px;
-  font-weight: 900;
-}
-
-.coin-sub {
-  color: #aaa;
-  font-size: 17px;
-}
-
-.amount {
-  font-size: 32px;
-  font-weight: 900;
-}
-
-.swap-arrow {
-  font-size: 34px;
-  margin: 10px 0 18px;
-  color: #8ff8ff;
+.access-before-warning {
+  padding: 12px 20px 4px;
 }
 
 .warning {
-  margin: 32px auto;
+  margin: 28px auto;
   max-width: 600px;
   padding: 22px;
   border-radius: 22px;
@@ -220,13 +233,17 @@ footer {
 }
 
 @media (max-width: 520px) {
-  .logo {
-    width: 96px;
+  .hero {
+    padding-top: 30px;
   }
 
   .hero-video {
-    width: 235px;
-    height: 235px;
+    width: 285px;
+    height: 285px;
+  }
+
+  .logo {
+    width: 86px;
   }
 
   h1 {
@@ -237,12 +254,26 @@ footer {
     font-size: 18px;
   }
 
-  .btn {
-    width: 88%;
+  .swap-box {
+    max-width: 100%;
+    padding: 18px;
+  }
+
+  .tab {
+    font-size: 14px;
+    padding: 10px 15px;
   }
 
   .coin-title {
-    font-size: 30px;
+    font-size: 26px;
+  }
+
+  .amount {
+    font-size: 25px;
+  }
+
+  .btn {
+    width: 88%;
   }
 }
 </style>
@@ -252,25 +283,15 @@ footer {
 
 <div class="hero">
 
-  <img src="logo.png" alt="CATS Logo" class="logo" />
-
   <video class="hero-video" src="cats-video.mp4" autoplay muted loop playsinline></video>
+
+  <img src="logo.png" alt="CATS Logo" class="logo" />
 
   <h1>CATS</h1>
 
   <div class="tagline">
     Crazy. Cute. Dangerous.<br>
     Meet Luna Cat — the face of $CATS on Cardano.
-  </div>
-
-  <div class="actions">
-    <a href="#swap" class="btn btn-buy">
-      Buy $CATS
-    </a>
-
-    <a href="access.html" class="btn btn-access">
-      🔓 Enter CATS Access
-    </a>
   </div>
 
 </div>
@@ -311,9 +332,9 @@ footer {
       </div>
     </div>
 
-    <p style="font-weight:800; font-size:18px;">
+    <div class="buy-text">
       Buy $CATS safely via DexHunter / Minswap
-    </p>
+    </div>
 
     <div class="actions">
       <a href="https://app.dexhunter.io/" target="_blank" class="btn btn-buy">
@@ -337,6 +358,12 @@ footer {
 
 </div>
 
+<div class="access-before-warning">
+  <a href="access.html" class="btn btn-access">
+    🔓 Enter CATS Access
+  </a>
+</div>
+
 <div class="warning">
   ⚠ MANY FAKE CATS TOKENS EXIST<br>
   Always verify the official Policy ID before buying.
@@ -356,12 +383,6 @@ footer {
     CATS is a community-driven meme token on Cardano, powered by crazy cat energy,
     Access-based utility, NFT experiences, and the long-term vision of the CATS Universe.
   </p>
-
-  <div class="actions">
-    <a href="access.html" class="btn btn-access">
-      Try CATS Access
-    </a>
-  </div>
 </div>
 
 <footer>
