@@ -14,56 +14,84 @@ body {
   text-align: center;
 }
 
-/* 🔥 HERO */
 .hero {
-  padding: 40px 20px;
-  background: radial-gradient(circle at top, #3b0036 0%, #090009 60%, #000 100%);
+  padding: 36px 20px 48px;
+  background: radial-gradient(circle at top, #3b0036 0%, #090009 58%, #000 100%);
+}
+
+.logo {
+  width: 110px;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 22px;
 }
 
 .hero-video {
-  width: 180px;
-  height: 180px;
-  border-radius: 28px;
+  width: 250px;
+  height: 250px;
+  border-radius: 34px;
   object-fit: cover;
-  box-shadow: 0 0 30px rgba(255, 120, 200, 0.4);
+  box-shadow: 0 0 44px rgba(255, 120, 200, 0.5);
+  margin-bottom: 24px;
 }
 
-/* 🔥 Access 버튼 */
-.hero-actions {
-  margin-top: 18px;
-}
-
-.access-btn {
-  display: inline-block;
-  padding: 14px 26px;
-  border-radius: 16px;
-  font-weight: 800;
-  text-decoration: none;
-  background: linear-gradient(135deg, #ff7ab6, #ffd1dc);
-  color: #111;
-  box-shadow: 0 0 25px rgba(255, 122, 182, 0.35);
-  transition: 0.25s;
-}
-
-.access-btn:hover {
-  transform: scale(1.05);
-}
-
-/* 🔥 텍스트 */
 h1 {
-  font-size: 48px;
-  margin: 18px 0 10px;
+  font-size: 52px;
+  margin: 14px 0 12px;
+  letter-spacing: 1px;
 }
 
 .tagline {
   font-size: 20px;
-  opacity: 0.9;
-  margin-bottom: 20px;
+  line-height: 1.45;
+  opacity: 0.92;
+  margin: 0 auto 26px;
+  max-width: 680px;
 }
 
-/* 🔥 Swap 영역 */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.btn {
+  display: inline-block;
+  width: min(82%, 420px);
+  padding: 16px 24px;
+  border-radius: 18px;
+  font-weight: 900;
+  font-size: 18px;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, #55d5ff, #8ff8ff);
+  color: #111;
+  box-shadow: 0 0 26px rgba(85, 213, 255, 0.32);
+}
+
+.btn-access {
+  background: linear-gradient(135deg, #ff7ab6, #ffd1dc);
+  color: #111;
+  box-shadow: 0 0 28px rgba(255, 122, 182, 0.38);
+}
+
+.btn-dark {
+  background: #1c1c22;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+
+.btn:hover {
+  transform: translateY(-2px) scale(1.03);
+}
+
 .section {
-  padding: 40px 20px;
+  padding: 44px 20px;
 }
 
 .swap-box {
@@ -79,7 +107,7 @@ h1 {
   display: flex;
   gap: 10px;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
 
 .tab {
@@ -98,77 +126,135 @@ h1 {
 .swap-card {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
-  border-radius: 18px;
+  align-items: center;
+  padding: 22px;
+  border-radius: 20px;
   background: #111119;
-  margin-bottom: 15px;
+  border: 1px solid rgba(255,255,255,0.12);
+  margin-bottom: 16px;
+}
+
+.swap-left {
+  text-align: left;
+}
+
+.swap-label {
+  color: #aaa;
+  font-size: 16px;
+  margin-bottom: 6px;
 }
 
 .coin-title {
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 34px;
+  font-weight: 900;
+}
+
+.coin-sub {
+  color: #aaa;
+  font-size: 17px;
+}
+
+.amount {
+  font-size: 32px;
+  font-weight: 900;
 }
 
 .swap-arrow {
-  font-size: 28px;
-  margin: 10px 0;
+  font-size: 34px;
+  margin: 10px 0 18px;
+  color: #8ff8ff;
 }
 
-/* 🔥 버튼 */
-.btn {
-  display: block;
-  margin: 10px auto;
-  padding: 14px;
-  border-radius: 14px;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.btn-main {
-  background: linear-gradient(135deg, #55d5ff, #8ff8ff);
-  color: #111;
-}
-
-.btn-dark {
-  background: #1c1c22;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.15);
-}
-
-/* 🔥 경고 */
 .warning {
-  margin: 30px auto;
+  margin: 32px auto;
   max-width: 600px;
-  padding: 20px;
-  border-radius: 20px;
-  background: #2a1c00;
-  border: 1px solid #ffcc00;
+  padding: 22px;
+  border-radius: 22px;
+  background: rgba(255, 190, 0, 0.12);
+  border: 1px solid rgba(255, 204, 0, 0.5);
+  color: #ffe49a;
+  font-weight: 900;
+  line-height: 1.5;
 }
 
-/* 🔥 Policy */
 .policy {
-  margin: 20px auto;
+  margin: 24px auto;
   max-width: 600px;
-  padding: 20px;
-  border-radius: 20px;
+  padding: 22px;
+  border-radius: 22px;
   background: #121218;
+  border: 1px solid rgba(255,255,255,0.12);
+  word-break: break-all;
+}
+
+.policy h3 {
+  margin-top: 0;
+}
+
+.policy-id {
+  color: #ffd7e5;
+  font-size: 14px;
+}
+
+.info-section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 36px 20px 60px;
+}
+
+.info-section h2 {
+  color: #ff9bd1;
+  font-size: 34px;
+}
+
+.info-section p {
+  font-size: 18px;
+  line-height: 1.65;
+  opacity: 0.86;
+}
+
+footer {
+  padding: 30px 20px;
+  opacity: 0.55;
+  font-size: 13px;
+}
+
+@media (max-width: 520px) {
+  .logo {
+    width: 96px;
+  }
+
+  .hero-video {
+    width: 235px;
+    height: 235px;
+  }
+
+  h1 {
+    font-size: 46px;
+  }
+
+  .tagline {
+    font-size: 18px;
+  }
+
+  .btn {
+    width: 88%;
+  }
+
+  .coin-title {
+    font-size: 30px;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🔥 HERO -->
 <div class="hero">
 
-  <video class="hero-video" src="cats-video.mp4" autoplay muted loop playsinline></video>
+  <img src="logo.png" alt="CATS Logo" class="logo" />
 
-  <!-- 🔥 Access 버튼 추가 -->
-  <div class="hero-actions">
-    <a href="access.html" class="access-btn">
-      🔓 Enter CATS Access
-    </a>
-  </div>
+  <video class="hero-video" src="cats-video.mp4" autoplay muted loop playsinline></video>
 
   <h1>CATS</h1>
 
@@ -177,10 +263,19 @@ h1 {
     Meet Luna Cat — the face of $CATS on Cardano.
   </div>
 
+  <div class="actions">
+    <a href="#swap" class="btn btn-buy">
+      Buy $CATS
+    </a>
+
+    <a href="access.html" class="btn btn-access">
+      🔓 Enter CATS Access
+    </a>
+  </div>
+
 </div>
 
-<!-- 🔥 SWAP -->
-<div class="section">
+<div id="swap" class="section">
 
   <div class="swap-box">
 
@@ -191,48 +286,87 @@ h1 {
     </div>
 
     <div class="swap-card">
-      <div>
-        <div>You sell</div>
+      <div class="swap-left">
+        <div class="swap-label">You sell</div>
         <div class="coin-title">ADA</div>
+        <div class="coin-sub">Cardano</div>
       </div>
-      <div>0</div>
+      <div>
+        <div class="amount">0</div>
+        <div class="coin-sub">~$0.00</div>
+      </div>
     </div>
 
     <div class="swap-arrow">↓</div>
 
     <div class="swap-card">
-      <div>
-        <div>You buy</div>
+      <div class="swap-left">
+        <div class="swap-label">You buy</div>
         <div class="coin-title">CATS</div>
+        <div class="coin-sub">The Crazy Cats</div>
       </div>
-      <div>0</div>
+      <div>
+        <div class="amount">0</div>
+        <div class="coin-sub">~$0.00</div>
+      </div>
     </div>
 
-    <p>Buy $CATS safely via DexHunter / Minswap</p>
+    <p style="font-weight:800; font-size:18px;">
+      Buy $CATS safely via DexHunter / Minswap
+    </p>
 
-    <a href="https://app.dexhunter.io/" target="_blank" class="btn btn-main">
-      Connect Wallet / Buy $CATS
-    </a>
+    <div class="actions">
+      <a href="https://app.dexhunter.io/" target="_blank" class="btn btn-buy">
+        Connect Wallet / Buy $CATS
+      </a>
 
-    <a href="https://app.dexhunter.io/" class="btn btn-dark">DexHunter</a>
-    <a href="https://minswap.org/" class="btn btn-dark">Minswap</a>
-    <a href="https://www.taptools.io/" class="btn btn-dark">TapTools</a>
+      <a href="https://app.dexhunter.io/" target="_blank" class="btn btn-dark">
+        DexHunter
+      </a>
+
+      <a href="https://minswap.org/" target="_blank" class="btn btn-dark">
+        Minswap
+      </a>
+
+      <a href="https://www.taptools.io/charts/token/bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454.CATS" target="_blank" class="btn btn-dark">
+        TapTools
+      </a>
+    </div>
 
   </div>
 
 </div>
 
-<!-- 🔥 WARNING -->
 <div class="warning">
   ⚠ MANY FAKE CATS TOKENS EXIST<br>
   Always verify the official Policy ID before buying.
 </div>
 
-<!-- 🔥 POLICY -->
 <div class="policy">
-  <h3>Official Policy ID</h3>
-  bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
+  <h3>✅ Official Policy ID</h3>
+  <div class="policy-id">
+    bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
+  </div>
+  <p>Copy and verify this Policy ID before buying $CATS.</p>
 </div>
+
+<div class="info-section">
+  <h2>What is CATS?</h2>
+  <p>
+    CATS is a community-driven meme token on Cardano, powered by crazy cat energy,
+    Access-based utility, NFT experiences, and the long-term vision of the CATS Universe.
+  </p>
+
+  <div class="actions">
+    <a href="access.html" class="btn btn-access">
+      Try CATS Access
+    </a>
+  </div>
+</div>
+
+<footer>
+  © 2026 CATS – The Crazy Cats on Cardano
+</footer>
 
 </body>
 </html>
