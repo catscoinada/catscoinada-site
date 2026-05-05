@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CATS Access</title>
+</head>
+<body style="font-family: Arial; text-align:center; padding:40px;">
+
+  <h1>🐱 CATS Access</h1>
+
+  <button onclick="connectWallet()">Connect Wallet</button>
+
+  <p id="status">Not connected</p>
+
+  <div id="content" style="display:none; margin-top:30px;">
+    <h2>🎉 Welcome CATS Holder</h2>
+    <p>This is your unlocked content.</p>
+  </div>
+
+<script>
+let api = null;
+
+const POLICY_ID = "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
+
+async function connectWallet() {
+  try {
+    if (!window.cardano || !window.cardano.eternl) {
+      alert("Eternl wallet not found");
+      return;
+    }
+
+    api = await window.cardano.eternl.enable();
+    document.getElementById("status").innerText = "Wallet Connected";
+
+    checkCATS();
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function checkCATS() {
+  try {
+    const utxos = await api.getUtxos();
+
+    let hasCATS = false;
+
+    for (let utxo of utxos) {
+      try {
+        const decoded = atob(utxo);
+        if (decoded.includes(POLICY_ID)) {
+          hasCATS = true;
+          break;
+        }
+      } catch(e) {}
+    }
+
+    if (hasCATS) {
+      document.getElementById("content").style.display = "block";
+      document.getElementById("status").innerText = "CATS Holder ✅";
+    } else {
+      document.getElementById("status").innerText = "No CATS found ❌";
+    }
+
+  } catch (err) {
+    console.error(err);
+  }
+}
+</script>
+
+</body>
+</html>
