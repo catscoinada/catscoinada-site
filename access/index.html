@@ -1,70 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>CATS Access</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body style="font-family: Arial; text-align:center; padding:40px;">
 
   <h1>🐱 CATS Access</h1>
 
-  <button onclick="connectWallet()" style="padding:10px 20px; font-size:16px;">
-    Connect Wallet
-  </button>
+  <button onclick="connectWallet()">Connect Wallet</button>
 
   <p id="status">Not connected</p>
 
   <div id="content" style="display:none; margin-top:30px;">
     <h2>🎉 Welcome CATS Holder</h2>
-    <p>This is your unlocked content (MVP test).</p>
+    <p>This is your unlocked content.</p>
   </div>
 
-<script>
-let api = null;
+  <script>
+    let api = null;
 
-async function connectWallet() {
-  try {
-    // 1. Cardano wallet 존재 여부 확인
-    if (!window.cardano) {
-      alert("No Cardano wallet found. Please install Eternl.");
-      return;
+    async function connectWallet() {
+      try {
+        console.log("Step 1: Checking wallet...");
+
+        if (!window.cardano) {
+          alert("❌ No Cardano wallet detected");
+          return;
+        }
+
+        console.log("Step 2: Cardano found");
+
+        if (!window.cardano.eternl) {
+          alert("❌ Eternl wallet not installed");
+          return;
+        }
+
+        console.log("Step 3: Eternl detected");
+
+        api = await window.cardano.eternl.enable();
+
+        console.log("Step 4: Connected", api);
+
+        document.getElementById("status").innerText =
+          "✅ Wallet Connected: Eternl";
+
+        document.getElementById("content").style.display = "block";
+
+      } catch (err) {
+        console.error("ERROR:", err);
+        alert("❌ Connection failed: " + err.message);
+      }
     }
-
-    // 2. 사용 가능한 지갑 리스트
-    const wallets = Object.keys(window.cardano);
-
-    if (!wallets || wallets.length === 0) {
-      alert("No wallet detected");
-      return;
-    }
-
-    // 3. 첫 번째 지갑 선택
-    const walletName = wallets[0];
-    console.log("Detected wallet:", walletName);
-
-    // 4. 지갑 연결 요청
-    api = await window.cardano[walletName].enable();
-
-    // 5. 상태 표시
-    const statusEl = document.getElementById("status");
-    if (statusEl) {
-      statusEl.innerText = "Wallet Connected: " + walletName;
-    }
-
-    // 6. 콘텐츠 표시 (MVP)
-    const contentEl = document.getElementById("content");
-    if (contentEl) {
-      contentEl.style.display = "block";
-    }
-
-  } catch (err) {
-    console.error("Wallet connection error:", err);
-    alert("Connection failed. Press F12 → Console 확인");
-  }
-}
-</script>
+  </script>
 
 </body>
 </html>
