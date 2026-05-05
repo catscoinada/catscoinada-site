@@ -1,28 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CATS Access</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body style="font-family: Arial; text-align:center; padding:40px;">
+
+  <h1>🐱 CATS Access</h1>
+
+  <button onclick="connectWallet()" style="padding:10px 20px; font-size:16px;">
+    Connect Wallet
+  </button>
+
+  <p id="status">Not connected</p>
+
+  <div id="content" style="display:none; margin-top:30px;">
+    <h2>🎉 Welcome CATS Holder</h2>
+    <p>This is your unlocked content (MVP test).</p>
+  </div>
+
 <script>
 let api = null;
 
 async function connectWallet() {
   try {
+    // 1. Cardano wallet 존재 여부 확인
     if (!window.cardano) {
-      alert("No Cardano wallet found");
+      alert("No Cardano wallet found. Please install Eternl.");
       return;
     }
 
-    const walletName = Object.keys(window.cardano)[0];
+    // 2. 사용 가능한 지갑 리스트
+    const wallets = Object.keys(window.cardano);
 
-    if (!walletName) {
+    if (!wallets || wallets.length === 0) {
       alert("No wallet detected");
       return;
     }
 
+    // 3. 첫 번째 지갑 선택
+    const walletName = wallets[0];
+    console.log("Detected wallet:", walletName);
+
+    // 4. 지갑 연결 요청
     api = await window.cardano[walletName].enable();
 
-    document.getElementById("status").innerText = "Wallet Connected: " + walletName;
+    // 5. 상태 표시
+    const statusEl = document.getElementById("status");
+    if (statusEl) {
+      statusEl.innerText = "Wallet Connected: " + walletName;
+    }
 
-    checkCATS();
+    // 6. 콘텐츠 표시 (MVP)
+    const contentEl = document.getElementById("content");
+    if (contentEl) {
+      contentEl.style.display = "block";
+    }
 
   } catch (err) {
-    console.error(err);
+    console.error("Wallet connection error:", err);
+    alert("Connection failed. Press F12 → Console 확인");
   }
 }
 </script>
+
+</body>
+</html>
