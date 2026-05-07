@@ -8,7 +8,8 @@
 
   <style>
     body {
-      background: #0b0b0f;
+      margin: 0;
+      background: linear-gradient(180deg, #12001f, #050508);
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
@@ -16,34 +17,37 @@
     }
 
     h1 {
-      font-size: 42px;
-      margin-bottom: 10px;
+      font-size: 48px;
+      margin-bottom: 15px;
     }
 
     p {
-      color: #cccccc;
+      color: #d6d6d6;
       font-size: 18px;
+      line-height: 1.5;
     }
 
     .card {
-      max-width: 500px;
-      margin: auto;
-      background: #15151d;
-      padding: 30px;
-      border-radius: 20px;
-      margin-top: 30px;
-      box-shadow: 0 0 20px rgba(128, 0, 255, 0.3);
+      max-width: 520px;
+      margin: 30px auto;
+      background: #14141d;
+      padding: 32px;
+      border-radius: 24px;
+      box-shadow: 0 0 28px rgba(128, 0, 255, 0.45);
     }
 
     button {
       background: #8b5cf6;
       color: white;
       border: none;
-      padding: 15px 25px;
-      border-radius: 12px;
-      font-size: 18px;
+      padding: 18px 28px;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: bold;
       cursor: pointer;
       margin-top: 20px;
+      width: 90%;
+      max-width: 420px;
     }
 
     button:hover {
@@ -51,23 +55,51 @@
     }
 
     #status {
-      margin-top: 20px;
-      font-size: 16px;
-      color: #00ff99;
+      margin-top: 24px;
+      font-size: 20px;
+      color: #ffdf6b;
+      font-weight: bold;
+    }
+
+    #walletInfo {
+      margin-top: 15px;
+      font-size: 14px;
+      color: #aaa;
+      word-break: break-all;
     }
 
     #content {
       display: none;
       margin-top: 30px;
-      padding: 20px;
-      background: #1f1f2a;
-      border-radius: 15px;
+      padding: 24px;
+      background: #20202b;
+      border-radius: 18px;
     }
 
-    img {
-      width: 100%;
-      border-radius: 15px;
-      margin-top: 15px;
+    #locked {
+      display: none;
+      margin-top: 30px;
+      padding: 24px;
+      background: #2a1a1a;
+      border-radius: 18px;
+      color: #ffb3b3;
+    }
+
+    .small {
+      font-size: 14px;
+      color: #aaa;
+    }
+
+    .success {
+      color: #22ff99 !important;
+    }
+
+    .warning {
+      color: #ffdf6b !important;
+    }
+
+    .danger {
+      color: #ff8a8a !important;
     }
   </style>
 </head>
@@ -77,7 +109,8 @@
   <h1>🐱 CATS Access</h1>
 
   <p>
-    Connect your Eternl Wallet to enter the CATS Universe.
+    Connect your Eternl Wallet.<br />
+    Hold CATS. Unlock the Universe.
   </p>
 
   <div class="card">
@@ -90,53 +123,113 @@
       Wallet not connected.
     </p>
 
-    <div id="content">
+    <div id="walletInfo"></div>
 
+    <div id="content">
       <h2>Welcome to CATS Universe</h2>
 
       <p>
-        Your wallet has entered the Access Zone.
+        Access Granted.
       </p>
 
-      <img src="https://catscoinada.com/logo.png" alt="CATS Logo">
+      <p>
+        You are holding CATS and have entered the Basic Access Zone.
+      </p>
 
+      <hr />
+
+      <h3>Hidden Poem</h3>
+
+      <p>
+        A small cat survived the dark.<br />
+        Now it opens the door to the universe.
+      </p>
+
+      <p class="small">
+        Phase 1 — CATS Access Core
+      </p>
+    </div>
+
+    <div id="locked">
+      <h2>Access Locked</h2>
+
+      <p>
+        Your wallet is connected, but CATS was not detected.
+      </p>
+
+      <p>
+        Basic Access requires holding CATS.
+      </p>
+
+      <p class="small">
+        Requirement: Hold 8 ADA worth of CATS.
+      </p>
     </div>
 
   </div>
 
+  <p class="small">
+    Official CATS Policy ID:<br />
+    bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
+  </p>
+
 <script>
+  let walletApi = null;
 
-let walletApi = null;
+  const CATS_POLICY_ID =
+    "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
 
-async function connectWallet() {
+  async function connectWallet() {
+    const status = document.getElementById("status");
+    const content = document.getElementById("content");
+    const locked = document.getElementById("locked");
+    const walletInfo = document.getElementById("walletInfo");
 
-  try {
+    content.style.display = "none";
+    locked.style.display = "none";
+    walletInfo.innerText = "";
 
-    if (!window.cardano || !window.cardano.eternl) {
+    try {
+      if (!window.cardano || !window.cardano.eternl) {
+        alert("Eternl wallet not detected. Please open inside Eternl DApp Browser.");
+        status.innerText = "Eternl wallet not detected.";
+        status.className = "danger";
+        return;
+      }
 
-      alert(
-        "Eternl wallet not detected. Please open inside Eternl DApp Browser."
-      );
+      status.innerText = "Connecting wallet...";
+      status.className = "warning";
 
-      return;
+      walletApi = await window.cardano.eternl.enable();
+
+      status.innerText = "Wallet connected. Checking CATS...";
+      status.className = "warning";
+
+      const usedAddresses = await walletApi.getUsedAddresses();
+      if (usedAddresses && usedAddresses.length > 0) {
+        walletInfo.innerText = "Wallet connected.";
+      }
+
+      const balanceCbor = await walletApi.getBalance();
+
+      const hasCats = balanceCbor.includes(CATS_POLICY_ID);
+
+      if (hasCats) {
+        status.innerText = "CATS detected. Access granted.";
+        status.className = "success";
+        content.style.display = "block";
+      } else {
+        status.innerText = "CATS not detected. Access locked.";
+        status.className = "danger";
+        locked.style.display = "block";
+      }
+
+    } catch (error) {
+      console.error(error);
+      status.innerText = "Wallet connection failed or rejected.";
+      status.className = "danger";
     }
-
-    walletApi = await window.cardano.eternl.enable();
-
-    document.getElementById("status").innerText =
-      "Wallet connected successfully.";
-
-    document.getElementById("content").style.display = "block";
-
-  } catch (error) {
-
-    console.error(error);
-
-    document.getElementById("status").innerText =
-      "Wallet connection failed or rejected.";
   }
-}
-
 </script>
 
 </body>
