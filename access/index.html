@@ -17,7 +17,7 @@
     }
 
     h1 {
-      font-size: 48px;
+      font-size: 44px;
       margin-bottom: 15px;
     }
 
@@ -28,7 +28,7 @@
     }
 
     .card {
-      max-width: 520px;
+      max-width: 540px;
       margin: 30px auto;
       background: #14141d;
       padding: 32px;
@@ -65,7 +65,7 @@
       margin-top: 15px;
       font-size: 14px;
       color: #aaa;
-      word-break: break-all;
+      word-break: break-word;
     }
 
     #content {
@@ -101,7 +101,15 @@
     .danger {
       color: #ff8a8a !important;
     }
+
+    hr {
+      border: none;
+      border-top: 1px solid #333;
+      margin: 24px 0;
+    }
   </style>
+
+  <script src="https://unpkg.com/@emurgo/cardano-serialization-lib-browser/cardano_serialization_lib.js"></script>
 </head>
 
 <body>
@@ -133,7 +141,7 @@
       </p>
 
       <p>
-        You are holding CATS and have entered the Basic Access Zone.
+        You are holding enough CATS to enter the Basic Access Zone.
       </p>
 
       <hr />
@@ -154,15 +162,11 @@
       <h2>Access Locked</h2>
 
       <p>
-        Your wallet is connected, but CATS was not detected.
+        Your wallet is connected, but your CATS balance is below the Basic Access requirement.
       </p>
 
       <p>
-        Basic Access requires holding CATS.
-      </p>
-
-      <p class="small">
-        Requirement: Hold 8 ADA worth of CATS.
+        Basic Access requires holding 18 ADA worth of CATS.
       </p>
     </div>
 
@@ -178,6 +182,25 @@
 
   const CATS_POLICY_ID =
     "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
+
+  /*
+    IMPORTANT:
+    This is the minimum CATS amount for Basic Access.
+
+    Temporary v2 setting:
+    18 ADA worth of CATS ≈ 160,000 CATS
+
+    You can adjust this number later based on the live Minswap price.
+  */
+  const MIN_CATS_AMOUNT = 160000n;
+
+  function hexToBytes(hex) {
+    const bytes = [];
+    for (let i = 0; i < hex.length; i += 2) {
+      bytes.push(parseInt(hex.substr(i, 2), 16));
+    }
+    return new Uint8Array(bytes);
+  }
 
   async function connectWallet() {
     const status = document.getElementById("status");
@@ -202,22 +225,48 @@
 
       walletApi = await window.cardano.eternl.enable();
 
-      status.innerText = "Wallet connected. Checking CATS...";
+      status.innerText = "Wallet connected. Checking CATS balance...";
       status.className = "warning";
-
-      const usedAddresses = await walletApi.getUsedAddresses();
-      if (usedAddresses && usedAddresses.length > 0) {
-        walletInfo.innerText = "Wallet connected.";
-      }
 
       const balanceCbor = await walletApi.getBalance();
 
-      const hasCats = balanceCbor.includes(CATS_POLICY_ID);
+      const value = CardanoWasm.Value.from_bytes(hexToBytes(balanceCbor));
+      const multiasset = value.multiasset();
 
-      if (hasCats) {
-        status.innerText = "CATS detected. Access granted.";
+      let catsAmount = 0n;
+
+      if (multiasset) {
+        const policies = multiasset.keys();
+
+        for (let i = 0; i < policies.len(); i++) {
+          const policy = policies.get(i);
+          const policyHex = policy.to_hex();
+
+          if (policyHex === CATS_POLICY_ID) {
+            const assets = multiasset.get(policy);
+            const assetNames = assets.keys();
+
+            for (let j = 0; j < assetNames.len(); j++) {
+              const assetName = assetNames.get(j);
+              const amount = assets.get(assetName);
+
+              catsAmount += BigInt(amount.to_str());
+            }
+          }
+        }
+      }
+
+      walletInfo.innerText =
+        "CATS detected amount: " + catsAmount.toString();
+
+      if (catsAmount >= MIN_CATS_AMOUNT) {
+        status.innerText = "CATS balance verified. Access granted.";
         status.className = "success";
         content.style.display = "block";
+      } else if (catsAmount > 0n) {
+        status.innerText = "CATS detected, but amount is below Basic Access.";
+        status.className = "danger";
+        locked.style.display = "block";
       } else {
         status.innerText = "CATS not detected. Access locked.";
         status.className = "danger";
@@ -226,7 +275,7 @@
 
     } catch (error) {
       console.error(error);
-      status.innerText = "Wallet connection failed or rejected.";
+      status.innerText = "Wallet check failed. Please refresh and try again.";
       status.className = "danger";
     }
   }
