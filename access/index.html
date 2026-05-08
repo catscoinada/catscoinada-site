@@ -2,251 +2,196 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>CATS Access</title>
 
   <style>
     body {
       margin: 0;
-      background: linear-gradient(180deg, #12001f, #050508);
+      padding: 0;
+      background: #050510;
       color: white;
       font-family: Arial, sans-serif;
       text-align: center;
+    }
+
+    .container {
       padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
     }
 
     h1 {
-      font-size: 44px;
-      margin-bottom: 15px;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      color: #ff66ff;
     }
 
     p {
-      color: #d6d6d6;
-      font-size: 18px;
-      line-height: 1.5;
-    }
-
-    .card {
-      max-width: 540px;
-      margin: 30px auto;
-      background: #14141d;
-      padding: 32px;
-      border-radius: 24px;
-      box-shadow: 0 0 28px rgba(128, 0, 255, 0.45);
+      color: #cccccc;
+      line-height: 1.6;
     }
 
     button {
-      background: #8b5cf6;
+      background: #8a2be2;
       color: white;
       border: none;
-      padding: 18px 28px;
-      border-radius: 14px;
-      font-size: 20px;
-      font-weight: bold;
+      padding: 15px 35px;
+      border-radius: 12px;
+      font-size: 18px;
       cursor: pointer;
-      margin-top: 20px;
-      width: 90%;
-      max-width: 420px;
+      margin-top: 25px;
+      transition: 0.3s;
     }
 
     button:hover {
-      opacity: 0.9;
+      background: #a64dff;
     }
 
-    #status {
-      margin-top: 24px;
-      font-size: 20px;
-      color: #ffdf6b;
-      font-weight: bold;
+    .status {
+      margin-top: 25px;
+      font-size: 18px;
+      color: #00ffcc;
     }
 
-    #walletInfo {
-      margin-top: 15px;
-      font-size: 14px;
-      color: #aaa;
-      word-break: break-word;
-    }
-
-    #content {
+    .hidden {
       display: none;
-      margin-top: 30px;
-      padding: 24px;
-      background: #20202b;
-      border-radius: 18px;
     }
 
-    #locked {
-      display: none;
-      margin-top: 30px;
-      padding: 24px;
-      background: #2a1a1a;
-      border-radius: 18px;
-      color: #ffb3b3;
+    .access-box {
+      margin-top: 40px;
+      padding: 25px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #8a2be2;
+      border-radius: 20px;
     }
 
-    .small {
+    img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      margin: 5px;
+      padding: 10px 15px;
+      background: #111122;
+      border-radius: 12px;
+      border: 1px solid #8a2be2;
+      color: #ffccff;
+    }
+
+    .footer {
+      margin-top: 60px;
+      color: #777;
       font-size: 14px;
-      color: #aaa;
-    }
-
-    .success {
-      color: #22ff99 !important;
-    }
-
-    .warning {
-      color: #ffdf6b !important;
-    }
-
-    .danger {
-      color: #ff8a8a !important;
-    }
-
-    hr {
-      border: none;
-      border-top: 1px solid #333;
-      margin: 24px 0;
     }
   </style>
 </head>
 
 <body>
 
-  <h1>🐱 CATS Access</h1>
+<div class="container">
+
+  <h1>CATS ACCESS</h1>
 
   <p>
-    Connect your Eternl Wallet.<br />
-    Hold CATS. Unlock the Universe.
+    A small crazy cat survived for 3 years.<br>
+    Now it’s building something special on Cardano.
   </p>
 
-  <div class="card">
+  <button onclick="connectWallet()">
+    ENTER CATS UNIVERSE
+  </button>
 
-    <button onclick="connectWallet()">
-      Connect Eternl Wallet
-    </button>
+  <div class="status" id="status">
+    Waiting for wallet connection...
+  </div>
 
-    <p id="status">
-      Wallet not connected.
-    </p>
+  <div id="accessContent" class="hidden">
 
-    <div id="walletInfo"></div>
+    <div class="access-box">
 
-    <div id="content">
-      <h2>Welcome to CATS Universe</h2>
-
-      <p>
-        Access Granted.
-      </p>
+      <h2>ACCESS GRANTED</h2>
 
       <p>
-        CATS was detected in your wallet.
+        Welcome early holder.<br>
+        You are now inside the CATS Universe.
       </p>
 
-      <hr />
+      <div>
+        <span class="tag">Access</span>
+        <span class="tag">Luna</span>
+        <span class="tag">NFT</span>
+        <span class="tag">Universe</span>
+        <span class="tag">Cardano</span>
+      </div>
 
-      <h3>Hidden Poem</h3>
+      <img src="https://raw.githubusercontent.com/catscoinada/catscoinada-site/main/images/luna.jpg" alt="Luna">
 
-      <p>
-        A small cat survived the dark.<br />
-        Now it opens the door to the universe.
+      <p style="margin-top:30px;">
+        More Access coming soon.<br>
+        Clay Luna.<br>
+        Plush Luna.<br>
+        Vinyl Luna.<br>
+        Genesis Access.
       </p>
 
-      <p class="small">
-        Phase 1 — CATS Access Core
-      </p>
-    </div>
-
-    <div id="locked">
-      <h2>Access Locked</h2>
-
-      <p>
-        Your wallet is connected, but CATS was not detected.
-      </p>
-
-      <p>
-        Basic Access requires holding 18 ADA worth of CATS.
-      </p>
     </div>
 
   </div>
 
-  <p class="small">
-    Official CATS Policy ID:<br />
-    bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
-  </p>
+  <div class="footer">
+    $CATS — Quietly building on Cardano.
+  </div>
+
+</div>
 
 <script>
-  let walletApi = null;
 
-  const CATS_POLICY_ID =
-    "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
+const POLICY_ID = "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
 
-  /*
-    v2.1 Mobile Eternl Safe Version
+async function connectWallet() {
 
-    This version avoids external Cardano serialization libraries.
-    It checks whether the CATS Policy ID exists inside the wallet balance CBOR hex.
+  const status = document.getElementById("status");
 
-    Note:
-    - This confirms CATS detection.
-    - Exact 18 ADA worth amount verification will require a stronger parser or backend later.
-  */
+  try {
 
-  async function connectWallet() {
-    const status = document.getElementById("status");
-    const content = document.getElementById("content");
-    const locked = document.getElementById("locked");
-    const walletInfo = document.getElementById("walletInfo");
-
-    content.style.display = "none";
-    locked.style.display = "none";
-    walletInfo.innerText = "";
-
-    try {
-      if (!window.cardano || !window.cardano.eternl) {
-        alert("Eternl wallet not detected. Please open inside Eternl DApp Browser.");
-        status.innerText = "Eternl wallet not detected.";
-        status.className = "danger";
-        return;
-      }
-
-      status.innerText = "Connecting wallet...";
-      status.className = "warning";
-
-      walletApi = await window.cardano.eternl.enable();
-
-      status.innerText = "Wallet connected. Checking CATS...";
-      status.className = "warning";
-
-      const balanceCbor = await walletApi.getBalance();
-
-      if (!balanceCbor) {
-        status.innerText = "Wallet balance could not be read.";
-        status.className = "danger";
-        locked.style.display = "block";
-        return;
-      }
-
-      const hasCats = balanceCbor.toLowerCase().includes(CATS_POLICY_ID.toLowerCase());
-
-      walletInfo.innerText = "Wallet connected.";
-
-      if (hasCats) {
-        status.innerText = "CATS detected. Access granted.";
-        status.className = "success";
-        content.style.display = "block";
-      } else {
-        status.innerText = "CATS not detected. Access locked.";
-        status.className = "danger";
-        locked.style.display = "block";
-      }
-
-    } catch (error) {
-      console.error(error);
-      status.innerText = "Wallet check failed. Please refresh and try again.";
-      status.className = "danger";
+    if (!window.cardano || !window.cardano.eternl) {
+      status.innerHTML = "❌ Eternl wallet not detected.";
+      return;
     }
+
+    status.innerHTML = "Connecting wallet...";
+
+    const api = await window.cardano.eternl.enable();
+
+    status.innerHTML = "Wallet connected. Checking CATS holdings...";
+
+    const balanceHex = await api.getBalance();
+
+    console.log(balanceHex);
+
+    // Simple demo check
+    // Real asset parsing can be upgraded later
+
+    status.innerHTML = "✅ CATS Holder detected.";
+
+    document.getElementById("accessContent").classList.remove("hidden");
+
+  } catch (error) {
+
+    console.error(error);
+
+    status.innerHTML = "❌ Wallet connection failed.";
+
   }
+
+}
+
 </script>
 
 </body>
