@@ -7,6 +7,10 @@
   <title>CATS Access Alpha</title>
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       padding: 0;
@@ -86,6 +90,13 @@
       border: 1px solid #9d4dff;
       color: #ffd6ff;
       font-size: 14px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .tag:hover {
+      background: #24113d;
+      transform: scale(1.05);
     }
 
     .luna-image {
@@ -103,6 +114,26 @@
       font-size: 17px;
     }
 
+    .section-box {
+      margin-top: 35px;
+      padding: 26px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .section-box h2 {
+      color: #ffccff;
+      margin-bottom: 12px;
+    }
+
+    .section-box p {
+      color: #dddddd;
+      line-height: 1.8;
+      font-size: 16px;
+      margin: 0;
+    }
+
     .footer {
       margin-top: 70px;
       color: #777;
@@ -113,7 +144,6 @@
     .highlight {
       color: #ff99ff;
     }
-
   </style>
 </head>
 
@@ -141,16 +171,16 @@
 
   <div id="accessContent" class="hidden">
 
-    <div class="access-box">
+    <div class="access-box" id="access-section">
 
       <h2>ACCESS GRANTED</h2>
 
       <div>
-        <span class="tag">Access</span>
-        <span class="tag">Luna</span>
-        <span class="tag">NFT</span>
-        <span class="tag">Universe</span>
-        <span class="tag">Cardano</span>
+        <a href="#access-section" class="tag">Access</a>
+        <a href="#luna-section" class="tag">Luna</a>
+        <a href="#nft-section" class="tag">NFT</a>
+        <a href="#universe-section" class="tag">Universe</a>
+        <a href="#cardano-section" class="tag">Cardano</a>
       </div>
 
       <img
@@ -172,6 +202,37 @@
         More Access coming soon.
       </div>
 
+    </div>
+
+    <div class="section-box" id="luna-section">
+      <h2>Luna World</h2>
+      <p>
+        Luna is the first guide of the CATS Universe.<br>
+        Cute, soft, strange, and quietly powerful.
+      </p>
+    </div>
+
+    <div class="section-box" id="nft-section">
+      <h2>CATS NFT</h2>
+      <p>
+        CATS Access Keys are coming soon.<br>
+        They are not just images — they are identity keys for future access.
+      </p>
+    </div>
+
+    <div class="section-box" id="universe-section">
+      <h2>CATS Universe</h2>
+      <p>
+        Plush Luna. Clay Luna. Vinyl Luna. Cosmic Luna.<br>
+        A small crazy cat is slowly opening new worlds.
+      </p>
+    </div>
+
+    <div class="section-box" id="cardano-section">
+      <h2>Built on Cardano</h2>
+      <p>
+        $CATS is quietly building access, identity, and community on Cardano.
+      </p>
     </div>
 
   </div>
