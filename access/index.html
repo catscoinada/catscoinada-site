@@ -7,9 +7,7 @@
   <title>CATS Access Alpha</title>
 
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -63,22 +61,27 @@
       min-height: 30px;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
-    .access-box {
-      margin-top: 40px;
-      padding: 30px;
-      border-radius: 24px;
-      background: rgba(255,255,255,0.05);
+    .access-box, .section-box {
+      margin-top: 35px;
+      padding: 26px;
+      border-radius: 22px;
+      background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.1);
       backdrop-filter: blur(10px);
     }
 
-    .access-box h2 {
+    .access-box h2, .section-box h2 {
       color: #ffccff;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+    }
+
+    .section-box p {
+      color: #dddddd;
+      line-height: 1.8;
+      font-size: 16px;
+      margin: 0;
     }
 
     .tag {
@@ -114,26 +117,6 @@
       font-size: 17px;
     }
 
-    .section-box {
-      margin-top: 35px;
-      padding: 26px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .section-box h2 {
-      color: #ffccff;
-      margin-bottom: 12px;
-    }
-
-    .section-box p {
-      color: #dddddd;
-      line-height: 1.8;
-      font-size: 16px;
-      margin: 0;
-    }
-
     .keys-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -146,7 +129,11 @@
       border-radius: 20px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
-      transition: 0.3s;
+    }
+
+    .key-icon {
+      font-size: 34px;
+      margin-bottom: 12px;
     }
 
     .key-card h3 {
@@ -161,20 +148,13 @@
       margin-top: 8px;
     }
 
-    .key-icon {
-      font-size: 34px;
-      margin-bottom: 12px;
-    }
-
     .key-card.iron {
       border-color: #cfd3d8;
       box-shadow: 0 0 24px rgba(210,220,230,0.24);
       background: linear-gradient(145deg, rgba(210,220,230,0.10), rgba(255,255,255,0.03));
     }
 
-    .key-card.iron h3 {
-      color: #e5e8ec;
-    }
+    .key-card.iron h3 { color: #e5e8ec; }
 
     .key-card.bronze {
       border-color: #c77a3b;
@@ -182,9 +162,7 @@
       background: linear-gradient(145deg, rgba(199,122,59,0.14), rgba(255,255,255,0.03));
     }
 
-    .key-card.bronze h3 {
-      color: #ffbf8a;
-    }
+    .key-card.bronze h3 { color: #ffbf8a; }
 
     .key-card.locked {
       opacity: 0.40;
@@ -201,20 +179,7 @@
       color: #aaa;
     }
 
-    .key-card.locked p {
-      line-height: 1.95;
-    }
-
-    .key-card.silver {
-      border-color: #9da3aa;
-    }
-
-    .key-card.gold {
-      border-color: #b99a35;
-    }
-
-    .key-status,
-    .key-price {
+    .key-status, .key-price {
       display: inline-block;
       margin: 6px 4px 12px 4px;
       padding: 7px 14px;
@@ -237,14 +202,12 @@
       background: rgba(210,220,230,0.12);
       color: #f0f3f7;
       border: 1px solid #cfd3d8;
-      box-shadow: 0 0 12px rgba(210,220,230,0.18);
     }
 
     .key-card.bronze .key-price {
       background: rgba(199,122,59,0.14);
       color: #ffbf8a;
       border: 1px solid #c77a3b;
-      box-shadow: 0 0 12px rgba(199,122,59,0.22);
     }
 
     .key-card.locked .key-status,
@@ -252,46 +215,43 @@
       background: rgba(255,255,255,0.04);
       color: #aaa;
       border: 1px solid #666;
-      box-shadow: none;
     }
 
     .key-note {
       display: block;
       margin-top: 12px;
       font-size: 13px;
-      color: #bdbdbd;
       opacity: 0.85;
     }
 
-    .key-card.iron .key-note {
-      color: #e1e6ea;
-    }
+    .key-card.iron .key-note { color: #e1e6ea; }
+    .key-card.bronze .key-note { color: #ffbf8a; }
 
-    .key-card.bronze .key-note {
-      color: #ffbf8a;
-    }
-
-    .verification-note {
-      margin-top: 22px;
-      padding: 18px;
+    .verification-box {
+      margin-top: 24px;
+      padding: 20px;
       border-radius: 18px;
       background: rgba(0,255,204,0.05);
       border: 1px solid rgba(0,255,204,0.18);
       color: #ccfff5;
       font-size: 14px;
-      line-height: 1.7;
+      line-height: 1.8;
+      text-align: left;
+      word-break: break-word;
+    }
+
+    .verification-box strong {
+      color: #00ffcc;
+    }
+
+    .verification-item {
+      margin-top: 10px;
     }
 
     @keyframes activePulse {
-      0% {
-        box-shadow: 0 0 10px rgba(0,255,204,0.18);
-      }
-      50% {
-        box-shadow: 0 0 18px rgba(0,255,204,0.38);
-      }
-      100% {
-        box-shadow: 0 0 10px rgba(0,255,204,0.18);
-      }
+      0% { box-shadow: 0 0 10px rgba(0,255,204,0.18); }
+      50% { box-shadow: 0 0 18px rgba(0,255,204,0.38); }
+      100% { box-shadow: 0 0 10px rgba(0,255,204,0.18); }
     }
 
     .footer {
@@ -301,9 +261,7 @@
       padding-bottom: 40px;
     }
 
-    .highlight {
-      color: #ff99ff;
-    }
+    .highlight { color: #ff99ff; }
   </style>
 </head>
 
@@ -316,14 +274,10 @@
   <div class="subtitle">
     Most meme coins disappeared.<br>
     One small crazy cat survived for 3 years.<br>
-    <span class="highlight">
-      Now it’s building something special.
-    </span>
+    <span class="highlight">Now it’s building something special.</span>
   </div>
 
-  <button onclick="connectWallet()">
-    ENTER CATS UNIVERSE
-  </button>
+  <button onclick="connectWallet()">ENTER CATS UNIVERSE</button>
 
   <div class="status" id="status">
     Waiting for wallet connection...
@@ -340,6 +294,7 @@
         <a href="#luna-section" class="tag">Luna</a>
         <a href="#nft-section" class="tag">NFT</a>
         <a href="#keys-section" class="tag">Keys</a>
+        <a href="#verification-section" class="tag">Verify</a>
         <a href="#universe-section" class="tag">Universe</a>
         <a href="#cardano-section" class="tag">Cardano</a>
         <a href="#identity-section" class="tag">Identity</a>
@@ -353,14 +308,11 @@
 
       <div class="welcome">
         Welcome early holder.<br><br>
-
         You are now inside the early CATS Universe.<br><br>
-
         Clay Luna.<br>
         Plush Luna.<br>
         Vinyl Luna.<br>
         Genesis Access.<br><br>
-
         More Access coming soon.
       </div>
 
@@ -444,10 +396,35 @@
         </div>
 
       </div>
+    </div>
 
-      <div class="verification-note">
-        Holder verification is being prepared for future CATS token and Access Key checks.<br>
-        Current Alpha confirms wallet connection and early access flow.
+    <div class="section-box" id="verification-section">
+      <h2>CATS Holder Verification</h2>
+      <p>
+        Alpha verification framework is now prepared.<br>
+        Future updates will check CATS token and Access Key holdings.
+      </p>
+
+      <div class="verification-box">
+        <div class="verification-item">
+          <strong>Wallet:</strong>
+          <span id="walletStatus">Connected</span>
+        </div>
+
+        <div class="verification-item">
+          <strong>CATS Policy ID:</strong><br>
+          <span id="policyIdDisplay">Preparing...</span>
+        </div>
+
+        <div class="verification-item">
+          <strong>Verification Mode:</strong>
+          <span id="verificationMode">Alpha Access Flow</span>
+        </div>
+
+        <div class="verification-item">
+          <strong>Next Layer:</strong>
+          CATS token / Access Key detection
+        </div>
       </div>
     </div>
 
@@ -495,7 +472,6 @@ async function connectWallet() {
   try {
 
     if (!window.cardano || !window.cardano.eternl) {
-
       status.innerHTML = "❌ Eternl wallet not detected.";
       return;
     }
@@ -504,24 +480,27 @@ async function connectWallet() {
 
     const api = await window.cardano.eternl.enable();
 
-    status.innerHTML = "Wallet connected. Preparing verification...";
+    status.innerHTML = "Wallet connected. Preparing holder verification...";
 
     const balance = await api.getBalance();
 
     console.log("Wallet balance CBOR:", balance);
-    console.log("CATS Policy ID prepared:", CATS_POLICY_ID);
-
-    status.innerHTML = "✅ Access Granted. Verification layer prepared.";
+    console.log("CATS Policy ID:", CATS_POLICY_ID);
 
     document
       .getElementById("accessContent")
       .classList
       .remove("hidden");
 
+    document.getElementById("policyIdDisplay").innerText = CATS_POLICY_ID;
+    document.getElementById("walletStatus").innerText = "Connected via Eternl";
+    document.getElementById("verificationMode").innerText = "Alpha verification framework";
+
+    status.innerHTML = "✅ Access Granted. Holder verification framework prepared.";
+
   } catch (error) {
 
     console.error(error);
-
     status.innerHTML = "❌ Wallet connection failed.";
 
   }
