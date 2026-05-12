@@ -196,9 +196,10 @@
       border-color: #d6b84c;
     }
 
-    .key-status {
+    .key-status,
+    .key-price {
       display: inline-block;
-      margin-bottom: 12px;
+      margin: 6px 4px 12px 4px;
       padding: 7px 14px;
       border-radius: 999px;
       font-size: 12px;
@@ -214,7 +215,22 @@
       box-shadow: 0 0 12px rgba(0,255,204,0.25);
     }
 
-    .key-card.locked .key-status {
+    .key-card.iron .key-price {
+      background: rgba(210,220,230,0.12);
+      color: #f0f3f7;
+      border: 1px solid #cfd3d8;
+      box-shadow: 0 0 12px rgba(210,220,230,0.18);
+    }
+
+    .key-card.bronze .key-price {
+      background: rgba(199,122,59,0.14);
+      color: #ffbf8a;
+      border: 1px solid #c77a3b;
+      box-shadow: 0 0 12px rgba(199,122,59,0.22);
+    }
+
+    .key-card.locked .key-status,
+    .key-card.locked .key-price {
       background: rgba(255,255,255,0.06);
       color: #cccccc;
       border: 1px solid #777;
@@ -321,9 +337,10 @@
           <div class="key-icon">🩶</div>
           <h3>Iron Key</h3>
           <span class="key-status">ACTIVE</span>
+          <span class="key-price">18 ADA</span>
           <p>
             Toy World Access<br>
-            Plush / Vinyl / Clay Luna<br>
+            Key + NFT<br>
             First gate of CATS Access.
           </p>
         </div>
@@ -332,9 +349,10 @@
           <div class="key-icon">🟤</div>
           <h3>Bronze Key</h3>
           <span class="key-status">ACTIVE</span>
+          <span class="key-price">38 ADA</span>
           <p>
             Comics & Story Access<br>
-            Early narrative world<br>
+            Key + NFT<br>
             Deeper holder identity layer.
           </p>
         </div>
@@ -343,6 +361,7 @@
           <div class="key-icon">🔒</div>
           <h3>Silver Key</h3>
           <span class="key-status">COMING SOON</span>
+          <span class="key-price">TBA</span>
           <p>
             Books / Poems / Quiet Universe<br>
             Future literary access layer.<br>
@@ -354,6 +373,7 @@
           <div class="key-icon">🔒</div>
           <h3>Gold Key</h3>
           <span class="key-status">LOCKED</span>
+          <span class="key-price">TBA</span>
           <p>
             Premium Future Access<br>
             Higher-level CATS Universe access.<br>
