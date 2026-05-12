@@ -142,47 +142,82 @@
     }
 
     .key-card {
-      padding: 20px;
+      padding: 22px;
       border-radius: 20px;
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .key-card.active {
-      box-shadow: 0 0 22px rgba(255,0,255,0.18);
-      border-color: #b14dff;
-    }
-
-    .key-card.locked {
-      opacity: 0.55;
-      filter: grayscale(0.4);
+      transition: 0.3s;
     }
 
     .key-card h3 {
       margin: 0 0 10px 0;
-      color: #ffd6ff;
-    }
-
-    .key-status {
-      display: inline-block;
-      margin-bottom: 12px;
-      padding: 6px 12px;
-      border-radius: 999px;
-      font-size: 12px;
-      background: #1b1b33;
-      color: #00ffcc;
-      border: 1px solid #00ffcc;
-    }
-
-    .locked .key-status {
-      color: #cccccc;
-      border-color: #777;
+      font-size: 20px;
     }
 
     .key-card p {
       font-size: 14px;
       line-height: 1.7;
       color: #dddddd;
+    }
+
+    .key-icon {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    .key-card.iron {
+      border-color: #cfd3d8;
+      box-shadow: 0 0 24px rgba(210,220,230,0.24);
+      background: linear-gradient(145deg, rgba(210,220,230,0.10), rgba(255,255,255,0.03));
+    }
+
+    .key-card.iron h3 {
+      color: #e5e8ec;
+    }
+
+    .key-card.bronze {
+      border-color: #c77a3b;
+      box-shadow: 0 0 24px rgba(199,122,59,0.28);
+      background: linear-gradient(145deg, rgba(199,122,59,0.14), rgba(255,255,255,0.03));
+    }
+
+    .key-card.bronze h3 {
+      color: #ffbf8a;
+    }
+
+    .key-card.locked {
+      opacity: 0.55;
+      filter: grayscale(0.45);
+      border-color: #666;
+      background: rgba(255,255,255,0.035);
+    }
+
+    .key-card.gold {
+      border-color: #d6b84c;
+    }
+
+    .key-status {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+
+    .key-card.iron .key-status,
+    .key-card.bronze .key-status {
+      background: rgba(0,255,204,0.10);
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
+      box-shadow: 0 0 12px rgba(0,255,204,0.25);
+    }
+
+    .key-card.locked .key-status {
+      background: rgba(255,255,255,0.06);
+      color: #cccccc;
+      border: 1px solid #777;
     }
 
     .footer {
@@ -282,17 +317,19 @@
 
       <div class="keys-grid">
 
-        <div class="key-card active">
+        <div class="key-card iron">
+          <div class="key-icon">🩶</div>
           <h3>Iron Key</h3>
           <span class="key-status">ACTIVE</span>
           <p>
             Toy World Access<br>
             Plush / Vinyl / Clay Luna<br>
-            First entry layer of CATS Access.
+            First gate of CATS Access.
           </p>
         </div>
 
-        <div class="key-card active">
+        <div class="key-card bronze">
+          <div class="key-icon">🟤</div>
           <h3>Bronze Key</h3>
           <span class="key-status">ACTIVE</span>
           <p>
@@ -302,7 +339,8 @@
           </p>
         </div>
 
-        <div class="key-card locked">
+        <div class="key-card locked silver">
+          <div class="key-icon">🔒</div>
           <h3>Silver Key</h3>
           <span class="key-status">COMING SOON</span>
           <p>
@@ -312,7 +350,8 @@
           </p>
         </div>
 
-        <div class="key-card locked">
+        <div class="key-card locked gold">
+          <div class="key-icon">🔒</div>
           <h3>Gold Key</h3>
           <span class="key-status">LOCKED</span>
           <p>
