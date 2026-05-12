@@ -134,6 +134,57 @@
       margin: 0;
     }
 
+    .keys-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-top: 22px;
+    }
+
+    .key-card {
+      padding: 20px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .key-card.active {
+      box-shadow: 0 0 22px rgba(255,0,255,0.18);
+      border-color: #b14dff;
+    }
+
+    .key-card.locked {
+      opacity: 0.55;
+      filter: grayscale(0.4);
+    }
+
+    .key-card h3 {
+      margin: 0 0 10px 0;
+      color: #ffd6ff;
+    }
+
+    .key-status {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #1b1b33;
+      color: #00ffcc;
+      border: 1px solid #00ffcc;
+    }
+
+    .locked .key-status {
+      color: #cccccc;
+      border-color: #777;
+    }
+
+    .key-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #dddddd;
+    }
+
     .footer {
       margin-top: 70px;
       color: #777;
@@ -179,6 +230,7 @@
         <a href="#access-section" class="tag">Access</a>
         <a href="#luna-section" class="tag">Luna</a>
         <a href="#nft-section" class="tag">NFT</a>
+        <a href="#keys-section" class="tag">Keys</a>
         <a href="#universe-section" class="tag">Universe</a>
         <a href="#cardano-section" class="tag">Cardano</a>
         <a href="#identity-section" class="tag">Identity</a>
@@ -219,6 +271,58 @@
         CATS Access Keys are coming soon.<br>
         They are not just images — they are identity keys for future access.
       </p>
+    </div>
+
+    <div class="section-box" id="keys-section">
+      <h2>Access Key Progression</h2>
+      <p>
+        CATS Access Keys open different layers of the CATS Universe.<br>
+        Iron and Bronze are the first active stages. Silver and Gold will be updated later.
+      </p>
+
+      <div class="keys-grid">
+
+        <div class="key-card active">
+          <h3>Iron Key</h3>
+          <span class="key-status">ACTIVE</span>
+          <p>
+            Toy World Access<br>
+            Plush / Vinyl / Clay Luna<br>
+            First entry layer of CATS Access.
+          </p>
+        </div>
+
+        <div class="key-card active">
+          <h3>Bronze Key</h3>
+          <span class="key-status">ACTIVE</span>
+          <p>
+            Comics & Story Access<br>
+            Early narrative world<br>
+            Deeper holder identity layer.
+          </p>
+        </div>
+
+        <div class="key-card locked">
+          <h3>Silver Key</h3>
+          <span class="key-status">COMING SOON</span>
+          <p>
+            Books / Poems / Quiet Universe<br>
+            Future literary access layer.<br>
+            Details will be updated later.
+          </p>
+        </div>
+
+        <div class="key-card locked">
+          <h3>Gold Key</h3>
+          <span class="key-status">LOCKED</span>
+          <p>
+            Premium Future Access<br>
+            Higher-level CATS Universe access.<br>
+            Not active yet.
+          </p>
+        </div>
+
+      </div>
     </div>
 
     <div class="section-box" id="universe-section">
