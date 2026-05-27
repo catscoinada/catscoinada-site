@@ -1,565 +1,392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>CATS Access Alpha</title>
+<title>Luna Access Welcome Room</title>
 
-  <style>
-    html { scroll-behavior: smooth; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom, #050510, #120020);
-      color: white;
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
+<style>
 
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #ff77ff;
-      margin-bottom: 10px;
-    }
-
-    .subtitle {
-      color: #cccccc;
-      line-height: 1.8;
-      margin-bottom: 30px;
-      font-size: 18px;
-    }
-
-    button {
-      background: #8a2be2;
-      color: white;
-      border: none;
-      padding: 16px 36px;
-      border-radius: 14px;
-      font-size: 18px;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      background: #b14dff;
-      transform: scale(1.03);
-    }
-
-    .status {
-      margin-top: 25px;
-      font-size: 18px;
-      color: #00ffcc;
-      min-height: 30px;
-    }
-
-    .hidden { display: none; }
-
-    .access-box, .section-box {
-      margin-top: 35px;
-      padding: 26px;
-      border-radius: 22px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      backdrop-filter: blur(10px);
-    }
-
-    .access-box h2, .section-box h2 {
-      color: #ffccff;
-      margin-bottom: 12px;
-    }
-
-    .section-box p {
-      color: #dddddd;
-      line-height: 1.8;
-      font-size: 16px;
-      margin: 0;
-    }
-
-    .tag {
-      display: inline-block;
-      margin: 6px;
-      padding: 10px 16px;
-      border-radius: 14px;
-      background: #16162b;
-      border: 1px solid #9d4dff;
-      color: #ffd6ff;
-      font-size: 14px;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    .tag:hover {
-      background: #24113d;
-      transform: scale(1.05);
-    }
-
-    .luna-image {
-      width: 100%;
-      max-width: 500px;
-      margin-top: 30px;
-      border-radius: 24px;
-      box-shadow: 0 0 30px rgba(255,0,255,0.25);
-    }
-
-    .welcome {
-      margin-top: 25px;
-      color: #dddddd;
-      line-height: 1.8;
-      font-size: 17px;
-    }
-
-    .keys-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 18px;
-      margin-top: 24px;
-    }
-
-    .key-card {
-      padding: 24px 22px;
-      border-radius: 20px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.12);
-    }
-
-    .key-icon {
-      font-size: 34px;
-      margin-bottom: 12px;
-    }
-
-    .key-card h3 {
-      margin: 0 0 12px 0;
-      font-size: 20px;
-    }
-
-    .key-card p {
-      font-size: 14px;
-      line-height: 1.8;
-      color: #dddddd;
-      margin-top: 8px;
-    }
-
-    .key-card.iron {
-      border-color: #cfd3d8;
-      box-shadow: 0 0 24px rgba(210,220,230,0.24);
-      background: linear-gradient(145deg, rgba(210,220,230,0.10), rgba(255,255,255,0.03));
-    }
-
-    .key-card.iron h3 { color: #e5e8ec; }
-
-    .key-card.bronze {
-      border-color: #c77a3b;
-      box-shadow: 0 0 24px rgba(199,122,59,0.28);
-      background: linear-gradient(145deg, rgba(199,122,59,0.14), rgba(255,255,255,0.03));
-    }
-
-    .key-card.bronze h3 { color: #ffbf8a; }
-
-    .key-card.locked {
-      opacity: 0.40;
-      filter: grayscale(0.78);
-      border-color: #555;
-      background: rgba(255,255,255,0.022);
-      box-shadow: inset 0 0 34px rgba(0,0,0,0.42);
-      padding-top: 28px;
-      padding-bottom: 30px;
-    }
-
-    .key-card.locked h3,
-    .key-card.locked p {
-      color: #aaa;
-    }
-
-    .key-status, .key-price {
-      display: inline-block;
-      margin: 6px 4px 12px 4px;
-      padding: 7px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 0.5px;
-    }
-
-    .key-card.iron .key-status,
-    .key-card.bronze .key-status {
-      background: rgba(0,255,204,0.10);
-      color: #00ffcc;
-      border: 1px solid #00ffcc;
-      box-shadow: 0 0 12px rgba(0,255,204,0.25);
-      animation: activePulse 2.8s ease-in-out infinite;
-    }
-
-    .key-card.iron .key-price {
-      background: rgba(210,220,230,0.12);
-      color: #f0f3f7;
-      border: 1px solid #cfd3d8;
-    }
-
-    .key-card.bronze .key-price {
-      background: rgba(199,122,59,0.14);
-      color: #ffbf8a;
-      border: 1px solid #c77a3b;
-    }
-
-    .key-card.locked .key-status,
-    .key-card.locked .key-price {
-      background: rgba(255,255,255,0.04);
-      color: #aaa;
-      border: 1px solid #666;
-    }
-
-    .key-note {
-      display: block;
-      margin-top: 12px;
-      font-size: 13px;
-      opacity: 0.85;
-    }
-
-    .key-card.iron .key-note { color: #e1e6ea; }
-    .key-card.bronze .key-note { color: #ffbf8a; }
-
-    .verification-box {
-      margin-top: 24px;
-      padding: 20px;
-      border-radius: 18px;
-      background: rgba(0,255,204,0.05);
-      border: 1px solid rgba(0,255,204,0.18);
-      color: #ccfff5;
-      font-size: 14px;
-      line-height: 1.8;
-      text-align: left;
-      word-break: break-word;
-    }
-
-    .verification-box strong {
-      color: #00ffcc;
-    }
-
-    .verification-item {
-      margin-top: 10px;
-    }
-
-    @keyframes activePulse {
-      0% { box-shadow: 0 0 10px rgba(0,255,204,0.18); }
-      50% { box-shadow: 0 0 18px rgba(0,255,204,0.38); }
-      100% { box-shadow: 0 0 10px rgba(0,255,204,0.18); }
-    }
-
-    .footer {
-      margin-top: 70px;
-      color: #777;
-      font-size: 14px;
-      padding-bottom: 40px;
-    }
-
-    .highlight { color: #ff99ff; }
-    .access-artwork {
-    margin-top: 30px;
-    text-align: center;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-.access-artwork img {
-    width: 100%;
-    max-width: 520px;
-    border-radius: 24px;
-    border: 2px solid rgba(255,255,255,0.08);
-    box-shadow: 0 0 30px rgba(255,105,180,0.25);
+body{
+    font-family:'Poppins',sans-serif;
+    background:
+    radial-gradient(circle at top,
+    #1a1d35 0%,
+    #090b12 45%,
+    #040507 100%);
+    
+    color:white;
+    overflow-x:hidden;
 }
 
-.mini-assets {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 25px;
-    flex-wrap: wrap;
+/* BACKGROUND GLOW */
+
+.bg-glow{
+    position:fixed;
+    width:700px;
+    height:700px;
+    background:rgba(255,120,210,0.08);
+    border-radius:50%;
+    filter:blur(140px);
+    top:-200px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:0;
 }
 
-.mini-assets img {
-    width: 120px;
-    height: auto;
-    filter: drop-shadow(0 0 12px rgba(255,105,180,0.25));
+/* MAIN WRAPPER */
+
+.wrapper{
+    position:relative;
+    z-index:2;
+    width:100%;
+    min-height:100vh;
+    padding:60px 20px 120px;
 }
-  </style>
+
+/* HERO */
+
+.hero{
+    text-align:center;
+    margin-bottom:70px;
+}
+
+.hero h1{
+    font-size:2.3rem;
+    font-weight:600;
+    margin-bottom:15px;
+    letter-spacing:1px;
+}
+
+.hero p{
+    color:#d9d9d9;
+    font-size:1rem;
+    line-height:1.8;
+}
+
+/* LUNA IMAGE */
+
+.main-luna{
+    width:280px;
+    max-width:80%;
+    display:block;
+    margin:40px auto;
+    filter:
+    drop-shadow(0 0 30px rgba(255,140,220,0.25));
+}
+
+/* SECTION */
+
+.section{
+    width:100%;
+    max-width:1100px;
+    margin:0 auto 80px;
+}
+
+.section-title{
+    font-size:1.5rem;
+    margin-bottom:25px;
+    font-weight:500;
+    text-align:center;
+}
+
+.section-sub{
+    text-align:center;
+    color:#bfbfbf;
+    margin-bottom:35px;
+    line-height:1.7;
+}
+
+/* KEYRING GRID */
+
+.keyring-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(160px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:
+    linear-gradient(
+    180deg,
+    rgba(255,255,255,0.06),
+    rgba(255,255,255,0.03)
+    );
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:24px;
+
+    padding:18px;
+
+    backdrop-filter:blur(10px);
+
+    transition:0.35s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(255,170,230,0.35);
+}
+
+.card img{
+    width:100%;
+    border-radius:18px;
+    margin-bottom:14px;
+}
+
+.card h3{
+    font-size:1rem;
+    margin-bottom:8px;
+    font-weight:500;
+}
+
+.card p{
+    font-size:0.88rem;
+    color:#cfcfcf;
+    line-height:1.6;
+}
+
+/* BUTTON */
+
+.center{
+    text-align:center;
+}
+
+.explore-btn{
+    display:inline-block;
+    padding:16px 36px;
+    border-radius:999px;
+    background:
+    linear-gradient(
+    90deg,
+    #ff8cd7,
+    #c79bff
+    );
+
+    color:white;
+    text-decoration:none;
+    font-weight:600;
+    margin-top:15px;
+
+    transition:0.3s;
+}
+
+.explore-btn:hover{
+    transform:scale(1.05);
+    box-shadow:
+    0 0 25px rgba(255,140,220,0.35);
+}
+
+/* LOCKED ROOMS */
+
+.locked-grid{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.locked-card{
+    border-radius:24px;
+    padding:30px 24px;
+    text-align:center;
+
+    background:
+    rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.06);
+
+    opacity:0.75;
+}
+
+.locked-card h3{
+    margin-bottom:12px;
+    font-size:1.1rem;
+}
+
+.locked-card p{
+    color:#bfbfbf;
+    font-size:0.9rem;
+    line-height:1.6;
+}
+
+/* FOOTER */
+
+.footer{
+    text-align:center;
+    margin-top:100px;
+    color:#9a9a9a;
+    font-size:0.9rem;
+    line-height:1.8;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:1.8rem;
+}
+
+.section-title{
+    font-size:1.3rem;
+}
+
+.main-luna{
+    width:220px;
+}
+
+}
+
+</style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="bg-glow"></div>
 
-  <h1>CATS ACCESS</h1>
+<div class="wrapper">
 
-  <div class="subtitle">
-    Most meme coins disappeared.<br>
-    One small crazy cat survived for 3 years.<br>
-    <span class="highlight">Now it’s building something special.</span>
-  </div>
+    <!-- HERO -->
 
-  <button onclick="connectWallet()">ENTER CATS UNIVERSE</button>
+    <section class="hero">
 
-  <div class="status" id="status">
-    Waiting for wallet connection...
-  </div>
+        <h1>
+            Welcome to the hidden universe of Luna Cats™ 🌙
+        </h1>
 
-  <div id="accessContent" class="hidden">
+        <p>
+            Thank you for becoming part of Luna Access.<br>
+            Quiet companions and hidden dreams are waiting for you.
+        </p>
 
-    <div class="access-box" id="access-section">
-
-      <h2>ACCESS GRANTED</h2>
-
-      <div>
-        <a href="#access-section" class="tag">Access</a>
-        <a href="#luna-section" class="tag">Luna</a>
-        <a href="#nft-section" class="tag">NFT</a>
-        <a href="#keys-section" class="tag">Keys</a>
-        <a href="#verification-section" class="tag">Verify</a>
-        <a href="#universe-section" class="tag">Universe</a>
-        <a href="#cardano-section" class="tag">Cardano</a>
-        <a href="#identity-section" class="tag">Identity</a>
-      </div>
-
-      <img
-        class="luna-image"
-        src="../images/luna-web-512.png"
+        <!-- CHANGE IMAGE -->
+        <img src="images/luna-main.png"
         alt="Luna"
-      >
+        class="main-luna">
 
-      <div class="welcome">
-        Welcome early holder.<br><br>
-        You are now inside the early CATS Universe.<br><br>
-        Clay Luna.<br>
-        Plush Luna.<br>
-        Vinyl Luna.<br>
-        Genesis Access.<br><br>
-        More Access coming soon.
-      </div>
+    </section>
+
+    <!-- KEYRING PREVIEW -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            Luna Keyring Preview 🌙
+        </h2>
+
+        <p class="section-sub">
+            Tiny companions from the Luna Universe.
+        </p>
+
+        <div class="keyring-grid">
+
+            <div class="card">
+                <img src="images/keyrings/pink.png">
+                <h3>Baby Pink Luna</h3>
+                <p>
+                    Soft and dreamy companion from the moonlight world.
+                </p>
+            </div>
+
+            <div class="card">
+                <img src="images/keyrings/rose.png">
+                <h3>Rose Pink Luna</h3>
+                <p>
+                    A warm emotional charm carrying hidden memories.
+                </p>
+            </div>
+
+            <div class="card">
+                <img src="images/keyrings/purple.png">
+                <h3>Purple Luna</h3>
+                <p>
+                    Quiet cosmic energy from the hidden universe.
+                </p>
+            </div>
+
+            <div class="card">
+                <img src="images/keyrings/mint.png">
+                <h3>Mint Luna</h3>
+                <p>
+                    Aurora-colored companion drifting through dreams.
+                </p>
+            </div>
+
+        </div>
+
+        <div class="center">
+            <a href="#" class="explore-btn">
+                Explore Luna Collection
+            </a>
+        </div>
+
+    </section>
+
+    <!-- LOCKED ROOMS -->
+
+    <section class="section">
+
+        <h2 class="section-title">
+            Future Rooms 🔒
+        </h2>
+
+        <div class="locked-grid">
+
+            <div class="locked-card">
+                <h3>Dream Room 🔒</h3>
+                <p>
+                    Hidden emotional stories and dream collections.
+                </p>
+            </div>
+
+            <div class="locked-card">
+                <h3>Midnight Room 🔒</h3>
+                <p>
+                    Secret Luna variants from the deep night universe.
+                </p>
+            </div>
+
+            <div class="locked-card">
+                <h3>Wonderland Room 🔒</h3>
+                <p>
+                    Strange companions and mysterious worlds await.
+                </p>
+            </div>
+
+            <div class="locked-card">
+                <h3>Plush Room 🔒</h3>
+                <p>
+                    Future Luna plush and designer toy universe.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+
+    <div class="footer">
+
+        Open the Door to Luna. 🌙<br>
+        © 2026 CATS Universe
 
     </div>
-
-    <div class="section-box" id="luna-section">
-      <h2>Luna World</h2>
-      <p>
-        Luna is the first guide of the CATS Universe.<br>
-        Cute, soft, strange, and quietly powerful.
-      </p>
-    </div>
-
-    <div class="section-box" id="nft-section">
-      <h2>CATS NFT</h2>
-      <p>
-        CATS Access Keys are coming soon.<br>
-        They are not just images — they are identity keys for future access.
-      </p>
-    </div>
-
-    <div class="section-box" id="keys-section">
-      <h2>Access Key Progression</h2>
-      <p>
-        CATS Access Keys open different layers of the CATS Universe.<br>
-        Iron and Bronze are the first active stages. Silver and Gold will be updated later.
-      </p>
-
-      <div class="keys-grid">
-
-        <div class="key-card iron">
-          <div class="key-icon">🩶</div>
-          <h3>Iron Key</h3>
-          <span class="key-status">ACTIVE</span>
-          <span class="key-price">18 ADA</span>
-          <p>
-            Toy World Access<br>
-            Key + NFT<br>
-            First gate of CATS Access.
-          </p>
-          <span class="key-note">First entry layer</span>
-        </div>
-
-        <div class="key-card bronze">
-          <div class="key-icon">🟤</div>
-          <h3>Bronze Key</h3>
-          <span class="key-status">ACTIVE</span>
-          <span class="key-price">38 ADA</span>
-          <p>
-            Comics & Story Access<br>
-            Key + NFT<br>
-            Deeper holder identity layer.
-          </p>
-          <span class="key-note">Narrative holder layer</span>
-        </div>
-
-        <div class="key-card locked silver">
-          <div class="key-icon">🔒</div>
-          <h3>Silver Key</h3>
-          <span class="key-status">COMING SOON</span>
-          <span class="key-price">TBA</span>
-          <p>
-            Books / Poems / Quiet Universe<br>
-            Future literary access layer.<br>
-            Details will be updated later.
-          </p>
-          <span class="key-note">Locked future layer</span>
-        </div>
-
-        <div class="key-card locked gold">
-          <div class="key-icon">🔒</div>
-          <h3>Gold Key</h3>
-          <span class="key-status">LOCKED</span>
-          <span class="key-price">TBA</span>
-          <p>
-            Premium Future Access<br>
-            Higher-level CATS Universe access.<br>
-            Not active yet.
-          </p>
-          <span class="key-note">Premium locked layer</span>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="section-box" id="verification-section">
-      <h2>CATS Holder Verification</h2>
-      <p>
-        Alpha verification framework is now prepared.<br>
-        Future updates will check CATS token and Access Key holdings.
-      </p>
-
-      <div class="verification-box">
-        <div class="verification-item">
-          <strong>Wallet:</strong>
-          <span id="walletStatus">Connected</span>
-        </div>
-
-        <div class="verification-item">
-          <strong>CATS Policy ID:</strong><br>
-          <span id="policyIdDisplay">Preparing...</span>
-        </div>
-
-        <div class="verification-item">
-          <strong>Verification Mode:</strong>
-          <span id="verificationMode">Alpha Access Flow</span>
-        </div>
-
-        <div class="verification-item">
-          <strong>Next Layer:</strong>
-          CATS token / Access Key detection
-        </div>
-      </div>
-    </div>
-<div class="section-box">
-
-  <h2>Iron Luna</h2>
-
-  <p>
-    The first tiny guardian of the CATS Universe.
-  </p>
-
-  <p>
-    Soft. Warm. Friendly.
-  </p>
-
-  <p>
-    Your first step into the Access Universe.
-  </p>
-
-  <div class="access-artwork">
-      <img src="../images/iron-luna-board-web.png" alt="Iron Luna Concept Board">
-  </div>
-
-  <div class="mini-assets">
-      <img src="../images/iron-key-512.png" alt="Iron Key">
-      <img src="../images/iron-luna-512.png" alt="Iron Luna">
-  </div>
 
 </div>
-
-    <div class="section-box" id="universe-section">
-      <h2>CATS Universe</h2>
-      <p>
-        Plush Luna. Clay Luna. Vinyl Luna. Cosmic Luna.<br>
-        A small crazy cat is slowly opening new worlds.
-      </p>
-    </div>
-
-    <div class="section-box" id="cardano-section">
-      <h2>Built on Cardano</h2>
-      <p>
-        $CATS is quietly building access, identity, and community on Cardano.
-      </p>
-    </div>
-
-    <div class="section-box" id="identity-section">
-      <h2>Early Holder Identity</h2>
-      <p>
-        You entered before the gates fully opened.<br><br>
-        Early holders are not forgotten.<br>
-        They become part of the first CATS Universe.<br><br>
-        Quietly building together on Cardano.
-      </p>
-    </div>
-
-  </div>
-
-  <div class="footer">
-    $CATS — Quietly building on Cardano.
-  </div>
-
-</div>
-
-<script>
-
-const CATS_POLICY_ID = "bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454";
-
-async function connectWallet() {
-
-  const status = document.getElementById("status");
-
-  try {
-
-    if (!window.cardano || !window.cardano.eternl) {
-      status.innerHTML = "❌ Eternl wallet not detected.";
-      return;
-    }
-
-    status.innerHTML = "Connecting Eternl wallet...";
-
-    const api = await window.cardano.eternl.enable();
-
-    status.innerHTML = "Wallet connected. Preparing holder verification...";
-
-    const balance = await api.getBalance();
-
-    console.log("Wallet balance CBOR:", balance);
-    console.log("CATS Policy ID:", CATS_POLICY_ID);
-
-    document
-      .getElementById("accessContent")
-      .classList
-      .remove("hidden");
-
-    document.getElementById("policyIdDisplay").innerText = CATS_POLICY_ID;
-    document.getElementById("walletStatus").innerText = "Connected via Eternl";
-    document.getElementById("verificationMode").innerText = "Alpha verification framework";
-
-    status.innerHTML = "✅ Access Granted. Holder verification framework prepared.";
-
-  } catch (error) {
-
-    console.error(error);
-    status.innerHTML = "❌ Wallet connection failed.";
-
-  }
-
-}
-
-</script>
 
 </body>
 </html>
