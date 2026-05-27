@@ -19,12 +19,13 @@
 
 body{
     font-family:'Poppins',sans-serif;
+
     background:
     radial-gradient(circle at top,
     #1a1d35 0%,
     #090b12 45%,
     #040507 100%);
-    
+
     color:white;
     overflow-x:hidden;
 }
@@ -33,14 +34,22 @@ body{
 
 .bg-glow{
     position:fixed;
+
     width:700px;
     height:700px;
-    background:rgba(255,120,210,0.08);
+
+    background:
+    rgba(255,120,210,0.08);
+
     border-radius:50%;
+
     filter:blur(140px);
+
     top:-200px;
     left:50%;
+
     transform:translateX(-50%);
+
     z-index:0;
 }
 
@@ -49,8 +58,10 @@ body{
 .wrapper{
     position:relative;
     z-index:2;
+
     width:100%;
     min-height:100vh;
+
     padding:60px 20px 120px;
 }
 
@@ -64,12 +75,15 @@ body{
 .hero h1{
     font-size:2.3rem;
     font-weight:600;
+
     margin-bottom:15px;
+
     letter-spacing:1px;
 }
 
 .hero p{
     color:#d9d9d9;
+
     font-size:1rem;
     line-height:1.8;
 }
@@ -77,12 +91,18 @@ body{
 /* LUNA IMAGE */
 
 .main-luna{
-    width:280px;
-    max-width:80%;
+
+    width:340px;
+    max-width:88%;
+
     display:block;
-    margin:40px auto;
+
+    margin:30px auto 45px;
+
     filter:
-    drop-shadow(0 0 30px rgba(255,140,220,0.25));
+    drop-shadow(0 0 45px rgba(255,140,220,0.35));
+
+    transition:0.4s ease;
 }
 
 /* SECTION */
@@ -90,20 +110,26 @@ body{
 .section{
     width:100%;
     max-width:1100px;
+
     margin:0 auto 80px;
 }
 
 .section-title{
     font-size:1.5rem;
     margin-bottom:25px;
+
     font-weight:500;
+
     text-align:center;
 }
 
 .section-sub{
     text-align:center;
+
     color:#bfbfbf;
+
     margin-bottom:35px;
+
     line-height:1.7;
 }
 
@@ -111,12 +137,15 @@ body{
 
 .keyring-grid{
     display:grid;
+
     grid-template-columns:
     repeat(auto-fit,minmax(160px,1fr));
+
     gap:20px;
 }
 
 .card{
+
     background:
     linear-gradient(
     180deg,
@@ -136,25 +165,34 @@ body{
 }
 
 .card:hover{
+
     transform:translateY(-6px);
-    border-color:rgba(255,170,230,0.35);
+
+    border-color:
+    rgba(255,170,230,0.35);
 }
 
 .card img{
     width:100%;
+
     border-radius:18px;
+
     margin-bottom:14px;
 }
 
 .card h3{
     font-size:1rem;
+
     margin-bottom:8px;
+
     font-weight:500;
 }
 
 .card p{
     font-size:0.88rem;
+
     color:#cfcfcf;
+
     line-height:1.6;
 }
 
@@ -165,9 +203,13 @@ body{
 }
 
 .explore-btn{
+
     display:inline-block;
+
     padding:16px 36px;
+
     border-radius:999px;
+
     background:
     linear-gradient(
     90deg,
@@ -176,15 +218,20 @@ body{
     );
 
     color:white;
+
     text-decoration:none;
+
     font-weight:600;
+
     margin-top:15px;
 
     transition:0.3s;
 }
 
 .explore-btn:hover{
+
     transform:scale(1.05);
+
     box-shadow:
     0 0 25px rgba(255,140,220,0.35);
 }
@@ -192,15 +239,21 @@ body{
 /* LOCKED ROOMS */
 
 .locked-grid{
+
     display:grid;
+
     grid-template-columns:
     repeat(auto-fit,minmax(220px,1fr));
+
     gap:20px;
 }
 
 .locked-card{
+
     border-radius:24px;
+
     padding:30px 24px;
+
     text-align:center;
 
     background:
@@ -212,23 +265,33 @@ body{
 }
 
 .locked-card h3{
+
     margin-bottom:12px;
+
     font-size:1.1rem;
 }
 
 .locked-card p{
+
     color:#bfbfbf;
+
     font-size:0.9rem;
+
     line-height:1.6;
 }
 
 /* FOOTER */
 
 .footer{
+
     text-align:center;
+
     margin-top:100px;
+
     color:#9a9a9a;
+
     font-size:0.9rem;
+
     line-height:1.8;
 }
 
@@ -245,7 +308,7 @@ body{
 }
 
 .main-luna{
-    width:220px;
+    width:300px;
 }
 
 }
@@ -264,7 +327,7 @@ body{
     <section class="hero">
 
         <h1>
-            Welcome to the hidden universe of Luna Cats™ 🌙
+            Welcome to the hidden universe of Luna Cats™
         </h1>
 
         <p>
@@ -272,8 +335,8 @@ body{
             Quiet companions and hidden dreams are waiting for you.
         </p>
 
-        <!-- CHANGE IMAGE -->
-        <img src="images/luna-main.png"
+        <img
+        src="images/luna-main.png"
         alt="Luna"
         class="main-luna">
 
@@ -284,7 +347,7 @@ body{
     <section class="section">
 
         <h2 class="section-title">
-            Luna Keyring Preview 🌙
+            Luna Keyring Preview
         </h2>
 
         <p class="section-sub">
@@ -295,7 +358,9 @@ body{
 
             <div class="card">
                 <img src="images/keyrings/pink.png">
+
                 <h3>Baby Pink Luna</h3>
+
                 <p>
                     Soft and dreamy companion from the moonlight world.
                 </p>
@@ -303,7 +368,9 @@ body{
 
             <div class="card">
                 <img src="images/keyrings/rose.png">
+
                 <h3>Rose Pink Luna</h3>
+
                 <p>
                     A warm emotional charm carrying hidden memories.
                 </p>
@@ -311,7 +378,9 @@ body{
 
             <div class="card">
                 <img src="images/keyrings/purple.png">
+
                 <h3>Purple Luna</h3>
+
                 <p>
                     Quiet cosmic energy from the hidden universe.
                 </p>
@@ -319,7 +388,9 @@ body{
 
             <div class="card">
                 <img src="images/keyrings/mint.png">
+
                 <h3>Mint Luna</h3>
+
                 <p>
                     Aurora-colored companion drifting through dreams.
                 </p>
@@ -328,9 +399,11 @@ body{
         </div>
 
         <div class="center">
+
             <a href="#" class="explore-btn">
                 Explore Luna Collection
             </a>
+
         </div>
 
     </section>
@@ -346,31 +419,43 @@ body{
         <div class="locked-grid">
 
             <div class="locked-card">
+
                 <h3>Dream Room 🔒</h3>
+
                 <p>
                     Hidden emotional stories and dream collections.
                 </p>
+
             </div>
 
             <div class="locked-card">
+
                 <h3>Midnight Room 🔒</h3>
+
                 <p>
                     Secret Luna variants from the deep night universe.
                 </p>
+
             </div>
 
             <div class="locked-card">
+
                 <h3>Wonderland Room 🔒</h3>
+
                 <p>
                     Strange companions and mysterious worlds await.
                 </p>
+
             </div>
 
             <div class="locked-card">
+
                 <h3>Plush Room 🔒</h3>
+
                 <p>
                     Future Luna plush and designer toy universe.
                 </p>
+
             </div>
 
         </div>
@@ -381,7 +466,7 @@ body{
 
     <div class="footer">
 
-        Open the Door to Luna. 🌙<br>
+        Open the Door to Luna.<br>
         © 2026 CATS Universe
 
     </div>
