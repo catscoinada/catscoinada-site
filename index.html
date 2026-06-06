@@ -14,12 +14,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Luna Cats™ | CATS Universe</title>
-
-  <meta name="description" content="Luna Cats™ by Simon S.S. Lee. Digital gifts, stories, art, Luna Access, and CATS Coin on Cardano." />
+  <title>Luna Cats™ | Buy Digital Gifts from Luna</title>
+  <meta name="description" content="Buy Luna Cats™ digital gifts, Luna Access, premium NFTs, and CATS Coin. Created by Simon S.S. Lee." />
 
   <style>
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -32,6 +33,55 @@
     a {
       color: #ffcc66;
       text-decoration: none;
+    }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 250px;
+      background: rgba(10, 8, 24, 0.98);
+      border-right: 1px solid rgba(255,255,255,0.12);
+      padding: 28px 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 20;
+    }
+
+    .sidebar h2 {
+      font-size: 24px;
+      color: #ffcc66;
+      margin: 0 0 20px;
+      text-align: left;
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 10px 0;
+      color: #ffffff;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .sidebar a:hover {
+      color: #ff99dd;
+    }
+
+    .side-small {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 24px;
+      line-height: 1.5;
+    }
+
+    .main {
+      margin-left: 250px;
+      width: calc(100% - 250px);
     }
 
     header {
@@ -59,8 +109,8 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(to bottom, rgba(0,0,0,0.28), rgba(9,9,18,0.95)),
-        radial-gradient(circle at center, rgba(255,120,220,0.12), transparent 55%);
+        linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(9,9,18,0.95)),
+        radial-gradient(circle at center, rgba(255,120,220,0.14), transparent 55%);
       z-index: 2;
     }
 
@@ -68,7 +118,7 @@
       position: relative;
       z-index: 3;
       padding: 40px 20px;
-      max-width: 950px;
+      max-width: 900px;
     }
 
     .badge {
@@ -121,6 +171,7 @@
       color: #fff;
       font-weight: bold;
       transition: 0.2s;
+      border: none;
     }
 
     .btn:hover {
@@ -134,19 +185,49 @@
     }
 
     section {
-      padding: 54px 20px;
-      max-width: 1120px;
+      padding: 60px 24px;
+      max-width: 1180px;
       margin: auto;
     }
 
-    .intro {
-      text-align: center;
-    }
+    .intro { text-align: center; }
 
     .highlight {
       color: #ffcc66;
       font-weight: bold;
       font-size: 22px;
+    }
+
+    .product-hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 36px;
+      align-items: center;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 32px;
+      padding: 36px;
+      box-shadow: 0 0 35px rgba(255, 102, 204, 0.14);
+    }
+
+    .product-hero img {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 0 35px rgba(255, 204, 102, 0.22);
+    }
+
+    .price {
+      font-size: 22px;
+      color: #ffcc66;
+      font-weight: bold;
+      margin-top: 16px;
+    }
+
+    .collection-img {
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: 0 0 35px rgba(255, 204, 102, 0.18);
+      margin-top: 24px;
     }
 
     .grid {
@@ -164,11 +245,10 @@
       box-shadow: 0 0 22px rgba(0,0,0,0.25);
     }
 
-    .image-card img {
+    .card img {
       width: 100%;
-      border-radius: 24px;
-      display: block;
-      box-shadow: 0 0 35px rgba(255, 204, 102, 0.18);
+      border-radius: 18px;
+      margin-bottom: 14px;
     }
 
     .exchange-logos {
@@ -195,6 +275,21 @@
       background: rgba(255,255,255,0.14);
     }
 
+    details {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 18px 22px;
+      margin: 16px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 20px;
+      font-weight: bold;
+      color: #ffcc66;
+    }
+
     .policy {
       font-size: 14px;
       word-break: break-all;
@@ -216,13 +311,31 @@
       border-top: 1px solid rgba(255,255,255,0.12);
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+      .layout { display: block; }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.12);
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .product-hero {
+        grid-template-columns: 1fr;
+      }
+
       header { min-height: 640px; }
       h1 { font-size: 40px; }
       h2 { font-size: 28px; }
       p { font-size: 16px; }
       .hero-sub { font-size: 18px; }
-      .hero-bg { object-position: center; }
       .exchange-logo { height: 54px; }
     }
   </style>
@@ -230,170 +343,215 @@
 
 <body>
 
-  <header>
-    <video autoplay muted loop playsinline class="hero-bg" poster="banner.jpg">
-      <source src="btcfi-video.mp4" type="video/mp4">
-    </video>
+<div class="layout">
 
-    <div class="overlay"></div>
+  <aside class="sidebar">
+    <h2>Luna Cats™</h2>
 
-    <div class="hero-content">
-      <div class="badge">🌙 Luna Cats™</div>
+    <a href="#keyring">🌙 Keyring Pack</a>
+    <a href="#access">🔑 Luna Access</a>
+    <a href="#monet">🖼️ MONET NFT</a>
+    <a href="#buycats">🐱 Buy CATS</a>
+    <a href="#simon">👤 Simon</a>
+    <a href="#official">🔗 Official Links</a>
 
-      <h1>Luna Cats™</h1>
+    <br>
 
-      <p class="hero-sub">
-        Cute Digital Gifts<br>
-        for Dreamers.
+    <a href="#tokenomics">📊 Tokenomics</a>
+    <a href="#btcfi">₿ BTCfi Vision</a>
+    <a href="#roadmap">🗺 Roadmap</a>
+
+    <div class="side-small">
+      Luna Cats™ by Simon S.S. Lee<br>
+      Founder of CATS Coin<br>
+      Built on Cardano
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header>
+      <video autoplay muted loop playsinline class="hero-bg" poster="banner.jpg">
+        <source src="btcfi-video.mp4" type="video/mp4">
+      </video>
+
+      <div class="overlay"></div>
+
+      <div class="hero-content">
+        <div class="badge">🌙 Luna Cats™ Official Store</div>
+
+        <h1>Buy Luna Digital Gifts</h1>
+
+        <p class="hero-sub">
+          Cute digital gifts, access, art, and CATS.
+        </p>
+
+        <p>
+          Created by Simon S.S. Lee<br>
+          Author & Creator of Luna Cats™<br>
+          Founder of CATS Coin
+        </p>
+
+        <div>
+          <a href="#keyring" class="btn">Buy Keyring Pack</a>
+          <a href="#buycats" class="btn secondary">Buy CATS</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="keyring">
+      <div class="product-hero">
+        <div>
+          <div class="badge">Flagship Product</div>
+
+          <h2>🌙 Luna Keyring Digital Pack</h2>
+
+          <p>
+            Pink Luna is the flagship product of Luna Cats™.
+            A cute digital keyring collection made for phones,
+            lock screens, wallpapers, and quiet emotional moments.
+          </p>
+
+          <p>
+            Includes 6 Luna keyring colors:
+            Pink, Rose, Cream, Mint, Purple, and Navy.
+          </p>
+
+          <p class="price">
+            Buy now on Gumroad
+          </p>
+
+          <a href="https://catcoin.gumroad.com/l/lunacatswallpaper"
+             class="btn"
+             target="_blank"
+             rel="noopener noreferrer">
+            Get Luna Keyring Pack
+          </a>
+        </div>
+
+        <div>
+          <img src="/images/luna-keyring-pink.png" alt="Pink Luna Keyring Digital Pack">
+        </div>
+      </div>
+
+      <img src="/images/luna-keyring-collection.png"
+           alt="Luna Keyring 6 Color Collection"
+           class="collection-img">
+    </section>
+
+    <section id="access">
+      <h2>🔑 Luna Access</h2>
+
+      <p class="intro">
+        Open the Secret Door to Luna.
       </p>
 
-      <p>
-        Created by Simon S.S. Lee<br>
-        Author & Creator of Luna Cats™<br>
-        Founder of CATS Coin<br>
-        20+ Years in the Toy Industry
+      <p class="intro highlight">
+        18 ADA · Receive your Luna Access NFT
       </p>
 
-      <div>
-        <a href="#products" class="btn">🌙 Luna Keyring Pack</a>
-        <a href="/access/index.html" class="btn secondary">Enter Luna Access</a>
-      </div>
-    </div>
-  </header>
+      <p class="intro">
+        Luna Access is the emotional membership layer of the CATS Universe.
+        It connects Luna, CATS, future holder content, and creator experiences.
+      </p>
 
-  <section>
-    <div class="image-card">
-      <img src="banner.jpg" alt="Luna Cats and CATS Universe visual" />
-    </div>
-  </section>
+      <p class="intro">
+        <a href="/access/index.html" class="btn">Enter Luna Access</a>
+      </p>
+    </section>
 
-  <section id="products">
-    <h2>Featured Products</h2>
+    <section id="monet">
+      <h2>🖼️ Luna Cats™: MONET TIME SERIES</h2>
 
-    <p class="intro">
-      Digital gifts, stories, and collectible art from the Luna Cats™ universe.
-    </p>
+      <p class="intro">
+        The premium NFT collection of Luna Cats™.
+        12 emotional time-based artworks. One Luna.
+      </p>
 
-    <div class="grid">
+      <p class="intro">
+        <a href="https://opensea.io/lunacatsuniverse"
+           class="btn"
+           target="_blank"
+           rel="noopener noreferrer">
+          View on OpenSea
+        </a>
+      </p>
+    </section>
 
-      <div class="card">
-        <h3>🌙 Luna Keyring Digital Pack</h3>
-        <p>
-          Cute Luna wallpapers and digital collectibles.
-          A small digital gift from Luna.
-        </p>
-        <p>
-          <a href="https://catcoin.gumroad.com/l/lunacatswallpaper" class="btn" target="_blank" rel="noopener noreferrer">
-            Get on Gumroad
-          </a>
-        </p>
-      </div>
+    <section id="buycats">
+      <h2>🐱 Buy CATS</h2>
 
-      <div class="card">
-        <h3>📖 Always Rooting For You</h3>
-        <p>
-          A gentle poem collection from Simon S.S. Lee.
-          Somewhere in the universe, Luna is rooting for you.
-        </p>
-        <p>
-          <a href="https://ko-fi.com/s/b25f4cc82f" class="btn" target="_blank" rel="noopener noreferrer">
-            Read on Ko-fi
-          </a>
-        </p>
-      </div>
+      <p class="intro">
+        CATS is the community token of Luna Cats™ on Cardano.
+      </p>
 
-      <div class="card">
-        <h3>🖼️ MONET TIME SERIES</h3>
-        <p>
-          Luna Cats™ premium NFT collection.
-          12 emotional moments. One Luna.
-        </p>
-        <p>
-          <a href="https://opensea.io/lunacatsuniverse" class="btn" target="_blank" rel="noopener noreferrer">
-            View on OpenSea
-          </a>
-        </p>
+      <div class="exchange-logos">
+
+        <a href="https://minswap.org/tokens/bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca0345443415453"
+           target="_blank"
+           rel="noopener noreferrer">
+          <img src="/images/minswap-logo.png" alt="Buy CATS on Minswap" class="exchange-logo">
+        </a>
+
+        <a href="https://app.dexhunter.io/swap?tokenIdSell=&tokenIdBuy=bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca0345443415453"
+           target="_blank"
+           rel="noopener noreferrer">
+          <img src="/images/dexhunter-logo.png" alt="Trade CATS on DexHunter" class="exchange-logo">
+        </a>
+
       </div>
 
-    </div>
-  </section>
+      <p class="intro policy">
+        Policy ID:<br>
+        bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
+      </p>
+    </section>
 
-  <section>
-    <h2>Luna Access</h2>
+    <section id="simon">
+      <h2>👤 About Simon S.S. Lee</h2>
 
-    <p class="intro">
-      Open the Secret Door to Luna.
-    </p>
+      <p class="intro">
+        Simon S.S. Lee is the author and creator of Luna Cats™,
+        founder of CATS Coin, and builder of CATS Universe.
+      </p>
 
-    <p class="intro highlight">
-      18 ADA · Receive your Luna Access NFT
-    </p>
+      <p class="intro">
+        With 20+ years in the toy industry,
+        Simon is building Luna Cats™ across digital gifts,
+        stories, access experiences, collectible art, and future character goods.
+      </p>
+    </section>
 
-    <p class="intro">
-      Enter the Universe of Luna Cats™.
-      Access is the emotional membership layer of the CATS Universe.
-    </p>
+    <section id="official">
+      <h2>🔗 Official Links</h2>
 
-    <p class="intro">
-      <a href="/access/index.html" class="btn">Enter Luna Access 🌙</a>
-    </p>
-  </section>
+      <div class="grid">
 
-  <section>
-    <h2>About Simon S.S. Lee</h2>
+        <div class="card"><h3>Website</h3><p><a href="https://www.catscoinada.com" target="_blank">catscoinada.com</a></p></div>
+        <div class="card"><h3>X</h3><p><a href="https://x.com/CATScoinada" target="_blank">@CATScoinada</a></p></div>
+        <div class="card"><h3>Instagram</h3><p><a href="https://www.instagram.com/simonsslee.author" target="_blank">simonsslee.author</a></p></div>
+        <div class="card"><h3>Amazon</h3><p><a href="https://amazon.com/author/simonsslee" target="_blank">Simon S.S. Lee</a></p></div>
+        <div class="card"><h3>Medium</h3><p><a href="https://medium.com/@simonsslee" target="_blank">@simonsslee</a></p></div>
+        <div class="card"><h3>YouTube</h3><p><a href="https://youtube.com/@simonssleeauthor" target="_blank">@simonssleeauthor</a></p></div>
+        <div class="card"><h3>OpenSea</h3><p><a href="https://opensea.io/lunacatsuniverse" target="_blank">Luna Cats Universe</a></p></div>
+        <div class="card"><h3>Etsy</h3><p><a href="https://www.etsy.com/shop/ChattyBrooks" target="_blank">Chatty Brooks Store</a></p></div>
+        <div class="card"><h3>Gumroad</h3><p><a href="https://catcoin.gumroad.com" target="_blank">Luna Digital Goods</a></p></div>
+        <div class="card"><h3>Ko-fi</h3><p><a href="https://ko-fi.com/simonsslee" target="_blank">Simon S.S. Lee</a></p></div>
+        <div class="card"><h3>GitHub</h3><p><a href="https://github.com/catscoinada" target="_blank">catscoinada</a></p></div>
 
-    <p class="intro">
-      Simon S.S. Lee is the author and creator of Luna Cats™,
-      founder of CATS Coin, and builder of the CATS Universe.
-    </p>
+      </div>
+    </section>
 
-    <p class="intro">
-      With 20+ years in the toy industry,
-      Simon is building Luna Cats™ across digital gifts, stories,
-      collectible art, access experiences, and future character goods.
-    </p>
-  </section>
+    <section id="tokenomics">
+      <h2>📊 Tokenomics</h2>
 
-  <section>
-    <h2>🐱 Buy CATS</h2>
-
-    <p class="intro">
-      CATS is the community token of Luna Cats™ on Cardano.
-    </p>
-
-    <div class="exchange-logos">
-
-      <a href="https://minswap.org/tokens/bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca0345443415453"
-         target="_blank"
-         rel="noopener noreferrer">
-        <img src="images/minswap-logo.png" alt="Buy CATS on Minswap" class="exchange-logo">
-      </a>
-
-      <a href="https://app.dexhunter.io/swap?tokenIdSell=&tokenIdBuy=bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca0345443415453"
-         target="_blank"
-         rel="noopener noreferrer">
-        <img src="images/dexhunter-logo.png" alt="Trade CATS on DexHunter" class="exchange-logo">
-      </a>
-
-    </div>
-
-    <p class="intro policy">
-      Policy ID:<br>
-      bbb0be3f57598bbf6a7d6ce18a60700beceb6904923a6a555ca03454
-    </p>
-  </section>
-
-  <section>
-    <h2>Tokenomics</h2>
-
-    <div class="grid">
-      <div class="card">
-        <h3>Total Supply</h3>
+      <details>
+        <summary>Total Supply</summary>
         <p>88,888,888,888,888,900 CATS</p>
-      </div>
+      </details>
 
-      <div class="card">
-        <h3>Distribution</h3>
+      <details>
+        <summary>Distribution</summary>
         <p>
           45% Liquidity Pool<br>
           25% Community Rewards<br>
@@ -402,136 +560,75 @@
           3% Marketing & Partnerships<br>
           2% Core Operations
         </p>
-      </div>
+      </details>
 
-      <div class="card">
-        <h3>Value Model</h3>
+      <details>
+        <summary>Value Model</summary>
         <p>
           CATS focuses on access, community growth,
           digital products, character IP, and long-term ecosystem participation.
         </p>
-      </div>
-    </div>
-  </section>
+      </details>
+    </section>
 
-  <section>
-    <h2>Roadmap</h2>
+    <section id="btcfi">
+      <h2>₿ BTCfi Vision</h2>
 
-    <div class="grid">
-      <div class="card">
-        <h3>Phase 1 — Foundation</h3>
+      <details>
+        <summary>BTC → ADA → CATS</summary>
+        <p>
+          CATS began as a Cardano community token and may continue to explore
+          Bitcoin DeFi narratives, Cardano onboarding, and creator-led access experiences.
+        </p>
+      </details>
+    </section>
+
+    <section id="roadmap">
+      <h2>🗺 Roadmap</h2>
+
+      <details>
+        <summary>Phase 1 — Foundation</summary>
         <p>
           Token registry, website, liquidity, social channels,
           Luna digital products, and CATS Access page.
         </p>
-      </div>
+      </details>
 
-      <div class="card">
-        <h3>Phase 2 — Products</h3>
+      <details>
+        <summary>Phase 2 — Products</summary>
         <p>
           Luna Keyring Pack, poem collections, Amazon books,
           OpenSea NFTs, Etsy store, and creator brand growth.
         </p>
-      </div>
+      </details>
 
-      <div class="card">
-        <h3>Phase 3 — Access</h3>
+      <details>
+        <summary>Phase 3 — Access</summary>
         <p>
           Luna Access membership, holder content,
           digital collectibles, and future community benefits.
         </p>
-      </div>
+      </details>
 
-      <div class="card">
-        <h3>Phase 4 — CATS Universe</h3>
+      <details>
+        <summary>Phase 4 — CATS Universe</summary>
         <p>
           Stories, comics, animation, plush toys,
           character goods, marketplace ideas, and long-term creator ecosystem expansion.
         </p>
-      </div>
-    </div>
-  </section>
+      </details>
+    </section>
 
-  <section>
-    <h2>Official Links</h2>
+    <footer>
+      <p>Luna Cats™ by Simon S.S. Lee</p>
+      <p>Author • Creator • Founder of CATS Coin</p>
+      <p>Built on Cardano</p>
+      <p>Nothing on this website is financial advice. Cryptocurrency is high risk.</p>
+      <p>© 2026 CATS Universe</p>
+    </footer>
 
-    <div class="grid">
-
-      <div class="card">
-        <h3>Website</h3>
-        <p><a href="https://www.catscoinada.com" target="_blank" rel="noopener noreferrer">catscoinada.com</a></p>
-      </div>
-
-      <div class="card">
-        <h3>X / Twitter</h3>
-        <p><a href="https://x.com/CATScoinada" target="_blank" rel="noopener noreferrer">@CATScoinada</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Instagram</h3>
-        <p><a href="https://www.instagram.com/simonsslee.author" target="_blank" rel="noopener noreferrer">simonsslee.author</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Amazon Author</h3>
-        <p><a href="https://amazon.com/author/simonsslee" target="_blank" rel="noopener noreferrer">Simon S.S. Lee</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Medium</h3>
-        <p><a href="https://medium.com/@simonsslee" target="_blank" rel="noopener noreferrer">@simonsslee</a></p>
-      </div>
-
-      <div class="card">
-        <h3>YouTube</h3>
-        <p><a href="https://youtube.com/@simonssleeauthor" target="_blank" rel="noopener noreferrer">@simonssleeauthor</a></p>
-      </div>
-
-      <div class="card">
-        <h3>OpenSea</h3>
-        <p><a href="https://opensea.io/lunacatsuniverse" target="_blank" rel="noopener noreferrer">Luna Cats Universe</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Etsy</h3>
-        <p><a href="https://www.etsy.com/shop/ChattyBrooks" target="_blank" rel="noopener noreferrer">Chatty Brooks Store</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Gumroad</h3>
-        <p><a href="https://catcoin.gumroad.com" target="_blank" rel="noopener noreferrer">Luna Digital Goods</a></p>
-      </div>
-
-      <div class="card">
-        <h3>Ko-fi</h3>
-        <p><a href="https://ko-fi.com/simonsslee" target="_blank" rel="noopener noreferrer">Simon S.S. Lee</a></p>
-      </div>
-
-      <div class="card">
-        <h3>GitHub</h3>
-        <p><a href="https://github.com/catscoinada" target="_blank" rel="noopener noreferrer">catscoinada</a></p>
-      </div>
-
-    </div>
-  </section>
-
-  <section>
-    <h2>Disclaimer</h2>
-
-    <p class="intro">
-      CATS is an experimental community and creator ecosystem token on Cardano.
-      Nothing on this website is financial advice.
-      Cryptocurrency is high risk.
-      Always do your own research.
-    </p>
-  </section>
-
-  <footer>
-    <p>Luna Cats™ by Simon S.S. Lee</p>
-    <p>Author • Creator • Founder of CATS Coin</p>
-    <p>Built on Cardano</p>
-    <p>© 2026 CATS Universe</p>
-  </footer>
+  </main>
+</div>
 
 </body>
 </html>
