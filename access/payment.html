@@ -88,7 +88,7 @@ font-weight:700;
 
 .instructions{
 text-align:left;
-max-width:600px;
+max-width:620px;
 margin:auto;
 line-height:2;
 }
@@ -118,12 +118,34 @@ $4.99 USD
 </div>
 
 <div class="ada">
-Equivalent ADA Accepted
+PayPal or Equivalent ADA Accepted
 </div>
 
 <div class="subtitle">
 Open the Secret Door to Luna.<br>
 Receive your Luna Access Pack.
+</div>
+
+<div class="card">
+
+<h2>Pay with PayPal</h2>
+
+<p style="margin-top:10px;opacity:0.85;line-height:1.8;">
+Pay $4.99 USD with PayPal, credit card, or debit card.
+</p>
+
+<script 
+  src="https://www.paypal.com/sdk/js?client-id=BAAfGYbdpSChjrIhZ9gHMIroxtFUFsCMEsnKZgFVGvLioOUTfas9zDe3MDraD2_LSK-M59zWPrPxf08Nqs&components=hosted-buttons&disable-funding=venmo&currency=USD">
+</script>
+
+<div id="paypal-container-5EFYF5UFU979S"></div>
+
+<script>
+  paypal.HostedButtons({
+    hostedButtonId: "5EFYF5UFU979S",
+  }).render("#paypal-container-5EFYF5UFU979S")
+</script>
+
 </div>
 
 <div class="card">
@@ -157,19 +179,10 @@ href="#"
 class="copy-btn"
 onclick="
 navigator.clipboard.writeText('addr1q8mhvzzqz5k2reza72zuslhmy50mf8rmgnwsfqh5zq4kg8kjrkl72up4evautz5cad07zh0waldawd2cd5dnrg6yrl6q325keh');
-alert('Wallet Address Copied!');
+alert('Wallet Address Copied! Please open your Cardano wallet and send 20 ADA.');
 return false;
 ">
-Copy Wallet Address
-</a>
-
-<br><br>
-
-<a
-href="https://x.com/CATScoinada"
-target="_blank"
-class="copy-btn">
-Submit Wallet Address
+Copy Address & Pay 20 ADA
 </a>
 
 </div>
@@ -180,11 +193,33 @@ Submit Wallet Address
 
 <div class="instructions">
 
+<strong>PayPal:</strong>
+
+<br><br>
+
+1️⃣ Click the PayPal button
+
+<br><br>
+
+2️⃣ Pay $4.99 USD
+
+<br><br>
+
+3️⃣ After payment, receive your Luna Access Pack download
+
+<br><br>
+
+<hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:20px 0;">
+
+<strong>ADA:</strong>
+
+<br><br>
+
 1️⃣ Open your Cardano wallet
 
 <br><br>
 
-2️⃣ Send the equivalent ADA amount
+2️⃣ Send 20 ADA to the wallet address above
 
 <br><br>
 
@@ -192,16 +227,11 @@ Submit Wallet Address
 
 <br><br>
 
-4️⃣ Submit your wallet address and transaction hash via X DM
+4️⃣ Contact support with your wallet address and transaction hash
 
-<ul>
-<li>Your Wallet Address</li>
-<li>Transaction Hash</li>
-</ul>
+<br><br>
 
-<br>
-
-5️⃣ Receive your Luna Access Pack download
+5️⃣ Receive your Luna Access Pack download after payment verification
 
 </div>
 
@@ -224,7 +254,7 @@ Submit Wallet Address
 </div>
 
 <div class="note">
-For support, please contact:<br>
+Need help?<br>
 X: @CATScoinada
 </div>
 
