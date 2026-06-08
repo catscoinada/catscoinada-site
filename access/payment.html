@@ -9,19 +9,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
 
 body{
 font-family:'Poppins',sans-serif;
-background:
-radial-gradient(circle at center,
-#221b42 0%,
-#120f25 40%,
-#07070d 100%);
+background:radial-gradient(circle at center,#221b42 0%,#120f25 40%,#07070d 100%);
 color:white;
 min-height:100vh;
 }
@@ -33,31 +25,10 @@ padding:60px 20px;
 text-align:center;
 }
 
-h1{
-font-size:3rem;
-margin-bottom:20px;
-}
-
-.price{
-font-size:3rem;
-font-weight:700;
-color:#ffb8ff;
-margin-bottom:10px;
-}
-
-.ada{
-font-size:1.3rem;
-font-weight:600;
-color:#ffd36e;
-margin-bottom:25px;
-}
-
-.subtitle{
-font-size:1.2rem;
-opacity:0.9;
-margin-bottom:40px;
-line-height:1.8;
-}
+h1{font-size:3rem;margin-bottom:20px;}
+.price{font-size:3rem;font-weight:700;color:#ffb8ff;margin-bottom:10px;}
+.ada{font-size:1.3rem;font-weight:600;color:#ffd36e;margin-bottom:25px;}
+.subtitle{font-size:1.2rem;opacity:0.9;margin-bottom:40px;line-height:1.8;}
 
 .card{
 background:rgba(255,255,255,0.05);
@@ -68,22 +39,28 @@ margin-bottom:30px;
 backdrop-filter:blur(10px);
 }
 
-.wallet{
-word-break:break-all;
-font-size:0.95rem;
-line-height:1.8;
-color:#ffd9ff;
-}
-
-.copy-btn{
+.paypal-btn,.copy-btn,.download-btn{
 display:inline-block;
 margin-top:20px;
-padding:14px 28px;
+padding:16px 32px;
 border-radius:40px;
 background:#ff8ae2;
 color:white;
 text-decoration:none;
 font-weight:700;
+}
+
+.paypal-btn{
+background:#ffc439;
+color:#111;
+font-size:1.1rem;
+}
+
+.wallet{
+word-break:break-all;
+font-size:0.95rem;
+line-height:1.8;
+color:#ffd9ff;
 }
 
 .instructions{
@@ -93,17 +70,8 @@ margin:auto;
 line-height:2;
 }
 
-.note{
-margin-top:25px;
-opacity:0.75;
-line-height:1.8;
-}
-
-.footer{
-margin-top:60px;
-opacity:0.5;
-font-size:0.9rem;
-}
+.note{margin-top:25px;opacity:0.75;line-height:1.8;}
+.footer{margin-top:60px;opacity:0.5;font-size:0.9rem;}
 </style>
 </head>
 
@@ -113,13 +81,9 @@ font-size:0.9rem;
 
 <h1>🌙 Complete Your Luna Access Pack</h1>
 
-<div class="price">
-$4.99 USD
-</div>
+<div class="price">$4.99 USD</div>
 
-<div class="ada">
-PayPal or Equivalent ADA Accepted
-</div>
+<div class="ada">PayPal or Equivalent ADA Accepted</div>
 
 <div class="subtitle">
 Open the Secret Door to Luna.<br>
@@ -127,29 +91,31 @@ Receive your Luna Access Pack.
 </div>
 
 <div class="card">
-
 <h2>Pay with PayPal</h2>
 
 <p style="margin-top:10px;opacity:0.85;line-height:1.8;">
-Pay $4.99 USD with PayPal, credit card, or debit card.
+Pay $4.99 USD with PayPal, credit card, debit card, or Apple Pay where available.
 </p>
 
-<script 
-  src="https://www.paypal.com/sdk/js?client-id=BAAfGYbdpSChjrIhZ9gHMIroxtFUFsCMEsnKZgFVGvLioOUTfas9zDe3MDraD2_LSK-M59zWPrPxf08Nqs&components=hosted-buttons&disable-funding=venmo&currency=USD">
-</script>
+<a
+href="https://www.paypal.com/ncp/payment/5EFYF5UFU979S"
+target="_blank"
+class="paypal-btn">
+Pay with PayPal - $4.99
+</a>
 
-<div id="paypal-container-5EFYF5UFU979S"></div>
+<p style="margin-top:20px;opacity:0.75;line-height:1.8;">
+After payment, please return to this page and download your Luna Access Pack below.
+</p>
 
-<script>
-  paypal.HostedButtons({
-    hostedButtonId: "5EFYF5UFU979S",
-  }).render("#paypal-container-5EFYF5UFU979S")
-</script>
-
+<a
+href="/thankyou.html"
+class="download-btn">
+Go to Download Page 🌙
+</a>
 </div>
 
 <div class="card">
-
 <h2>Pay with ADA</h2>
 
 <p style="margin-top:10px;opacity:0.85;line-height:1.8;">
@@ -160,19 +126,12 @@ Current early supporter guide: <strong>20 ADA</strong>
 <img
 src="images/LunaAccess_18ADA_QR.png"
 alt="Luna Access QR"
-style="
-width:280px;
-max-width:90%;
-border-radius:20px;
-margin-top:20px;
-margin-bottom:20px;
-">
+style="width:280px;max-width:90%;border-radius:20px;margin-top:20px;margin-bottom:20px;"
+>
 
 <div class="wallet">
 addr1q8mhvzzqz5k2reza72zuslhmy50mf8rmgnwsfqh5zq4kg8kjrkl72up4evautz5cad07zh0waldawd2cd5dnrg6yrl6q325keh
 </div>
-
-<br>
 
 <a
 href="#"
@@ -184,73 +143,38 @@ return false;
 ">
 Copy Address & Pay 20 ADA
 </a>
-
 </div>
 
 <div class="card">
-
 <h2>How To Purchase</h2>
 
 <div class="instructions">
-
-<strong>PayPal:</strong>
-
-<br><br>
-
-1️⃣ Click the PayPal button
-
-<br><br>
-
-2️⃣ Pay $4.99 USD
-
-<br><br>
-
-3️⃣ After payment, receive your Luna Access Pack download
-
-<br><br>
+<strong>PayPal:</strong><br><br>
+1️⃣ Click “Pay with PayPal - $4.99”<br><br>
+2️⃣ Complete payment on PayPal<br><br>
+3️⃣ Return to the download page and download your Luna Access Pack<br><br>
 
 <hr style="border:0;border-top:1px solid rgba(255,255,255,0.15);margin:20px 0;">
 
-<strong>ADA:</strong>
-
-<br><br>
-
-1️⃣ Open your Cardano wallet
-
-<br><br>
-
-2️⃣ Send 20 ADA to the wallet address above
-
-<br><br>
-
-3️⃣ Save your transaction hash
-
-<br><br>
-
-4️⃣ Contact support with your wallet address and transaction hash
-
-<br><br>
-
-5️⃣ Receive your Luna Access Pack download after payment verification
-
+<strong>ADA:</strong><br><br>
+1️⃣ Open your Cardano wallet<br><br>
+2️⃣ Send 20 ADA to the wallet address above<br><br>
+3️⃣ Save your transaction hash<br><br>
+4️⃣ Contact support with your wallet address and transaction hash<br><br>
+5️⃣ Receive your Luna Access Pack after payment verification
 </div>
-
 </div>
 
 <div class="card">
-
 <h2>What You Receive</h2>
 
 <ul style="list-style:none;line-height:2.2;">
-
 <li>🌙 Luna Access Main Image</li>
 <li>📖 Always Rooting For You Special Edition</li>
 <li>📖 You're Enough Mini Poetry Book</li>
 <li>🔑 Luna Keyring Collection</li>
-<li>✨ Future Holder Benefits</li>
-
+<li>💌 Welcome Letter</li>
 </ul>
-
 </div>
 
 <div class="note">
