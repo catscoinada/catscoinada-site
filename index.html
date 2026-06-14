@@ -311,33 +311,69 @@
       border-top: 1px solid rgba(255,255,255,0.12);
     }
 
-    @media (max-width: 900px) {
-      .layout { display: block; }
+  @media (max-width: 900px) {
 
-      .sidebar {
-        position: relative;
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 1px solid rgba(255,255,255,0.12);
-      }
+.layout {
+display: block;
+}
 
-      .main {
-        margin-left: 0;
-        width: 100%;
-      }
+.sidebar {
+position: relative;
+width: 100%;
+height: auto;
+max-height: 68px;
+overflow: hidden;
+border-right: none;
+border-bottom: 1px solid rgba(255,255,255,0.12);
+padding: 18px 20px;
+}
 
-      .product-hero {
-        grid-template-columns: 1fr;
-      }
+.sidebar:hover,
+.sidebar:focus-within {
+max-height: 600px;
+}
 
-      header { min-height: 640px; }
-      h1 { font-size: 40px; }
-      h2 { font-size: 28px; }
-      p { font-size: 16px; }
-      .hero-sub { font-size: 18px; }
-      .exchange-logo { height: 54px; }
-    }
+.sidebar h2::after {
+content: " ☰ Menu";
+float: right;
+color: #ff99dd;
+font-size: 14px;
+}
+
+.main {
+margin-left: 0;
+width: 100%;
+}
+
+.product-hero {
+grid-template-columns: 1fr;
+}
+
+header {
+min-height: 640px;
+}
+
+h1 {
+font-size: 40px;
+}
+
+h2 {
+font-size: 28px;
+}
+
+p {
+font-size: 16px;
+}
+
+.hero-sub {
+font-size: 18px;
+}
+
+.exchange-logo {
+height: 54px;
+}
+}
+
   </style>
 </head>
 
@@ -372,7 +408,7 @@
 
     <header>
       <video autoplay muted loop playsinline class="hero-bg" poster="banner.jpg">
-        <source src="btcfi-video.mp4" type="video/mp4">
+        <source src="/videos/luna-keyring-pack.mp4" type="video/mp4">
       </video>
 
       <div class="overlay"></div>
@@ -421,7 +457,7 @@
             Buy now on Gumroad
           </p>
 
-          <a href="https://catcoin.gumroad.com/l/lunacatswallpaper"
+          <a href="https://catcoin.gumroad.com/l/lunakeyringpack"
              class="btn"
              target="_blank"
              rel="noopener noreferrer">
