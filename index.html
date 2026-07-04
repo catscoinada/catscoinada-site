@@ -429,8 +429,14 @@ height: 54px;
         </p>
 
         <div>
-          <a href="#keyring" class="btn">Buy Keyring Pack</a>
-          <a href="#buycats" class="btn secondary">Buy CATS</a>
+          <a href="#keyring"
+   class="btn"
+   data-event="click_keyring_home">
+    Buy Keyring Pack
+</a>
+          <a href="#buycats"
+   class="btn secondary"
+   data-event="click_buy_cats">Buy CATS</a>
         </div>
       </div>
     </header>
@@ -458,8 +464,9 @@ height: 54px;
           </p>
 
           <a href="https://catcoin.gumroad.com/l/lunakeyringpack"
-             class="btn"
-             target="_blank"
+   class="btn"
+   target="_blank"
+   data-event="click_gumroad_keyring">
              rel="noopener noreferrer">
             Get Luna Keyring Pack
           </a>
@@ -504,7 +511,11 @@ Equivalent ADA Accepted
       </p>
 
       <p class="intro">
-        <a href="/access/payment.html" class="btn">Enter Luna Access</a>
+        <a href="/access/payment.html"
+   class="btn"
+   data-event="click_access_home">
+    Enter Luna Access
+</a>
       </p>
     </section>
 
@@ -677,6 +688,28 @@ Equivalent ADA Accepted
 
   </main>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
+    document.querySelectorAll("[data-event]").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const eventName = button.dataset.event;
+
+            if (typeof gtag === "function") {
+
+                gtag("event", eventName);
+
+                console.log("GA4 Event:", eventName);
+
+            }
+
+        });
+
+    });
+
+});
+</script>
 </body>
 </html>
