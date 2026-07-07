@@ -1,0 +1,35 @@
+{
+  "name": "The Crazy Luna Cats",
+  "symbol": "CATS",
+  "description": "The Official AI Digital Content Platform of CATS Universe. The Crazy Luna Cats powers AI eBooks, digital products, and AI-generated content to build the world's leading AI Digital Library.",
+  "image": "https://catscoinada.com/cats-token-logo.png",
+  "external_url": "https://catscoinada.com",
+  "attributes": [
+    {
+      "trait_type": "Company",
+      "value": "CATS Universe"
+    },
+    {
+      "trait_type": "Brand",
+      "value": "The Crazy Luna Cats™"
+    },
+    {
+      "trait_type": "Blockchain",
+      "value": "Solana"
+    },
+    {
+      "trait_type": "Category",
+      "value": "AI Digital Content Platform"
+    },
+    {
+      "trait_type": "Vision",
+      "value": "Building the World's Leading AI Digital Library"
+    }
+  ],
+  "properties": {
+    "website": "https://catscoinada.com",
+    "github": "https://github.com/catscoinada",
+    "x": "https://x.com/CATScoinada",
+    "telegram": "https://t.me/CATSofficialADA"
+  }
+}
